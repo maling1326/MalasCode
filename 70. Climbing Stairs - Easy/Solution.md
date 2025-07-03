@@ -14,6 +14,20 @@ dengan aturan bisa naik 1 atau 2 anak tangga sekaligus.
 
 Fungsi ini menggunakan konsep deret Fibonacci secara iteratif untuk menyelesaikan masalah.
 
+## Complexity
+
+### Time Complexity = `O(n)`
+
+- Ada satu loop yang jalan dari 0 sampai n-1, jadi dia ngelakuin operasi sebanyak n kali.
+- Setiap langkah cuma nambahin dan geser nilai, yang cepat banget (waktu tetap).
+- Jadi, total waktu yang dibutuhin itu `O(n)`, artinya makin besar n, waktu juga makin panjang secara linear.
+
+### Space Complexity = `O(1)` (konstan)
+
+- Cuma pakai beberapa variabel buat nyimpen angka, gak ada array atau struktur data lain yang ukurannya tergantung n.
+- Jadi, memori yang dipakai tetap kecil dan gak bertambah walau n besar.
+- Kompleksitas memorinya `O(1)` alias konstan.
+
 ## Code
 
 ```cpp []

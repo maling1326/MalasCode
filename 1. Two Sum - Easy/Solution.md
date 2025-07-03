@@ -41,23 +41,23 @@ The hash table stores up to n elements, so the space complexity is O(n).
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-    unordered_map<int, int> map; // key: number, value: index
+        unordered_map<int, int> map; // key: number, value: index
 
-    for (int i = 0; i < nums.size(); i++) {
-        int search = target - nums[i];
+        for (int i = 0; i < nums.size(); i++) {
+            int search = target - nums[i];
 
-        // Check if complement exists in map
-        if (map.find(search) != map.end()) {
-            // Return indices of the two numbers
-            return {map[search], i};
+            // Check if complement exists in map
+            if (map.find(search) != map.end()) {
+                // Return indices of the two numbers
+                return {map[search], i};
+            }
+
+            // Insert current number and its index into map
+            map[nums[i]] = i;
         }
 
-        // Insert current number and its index into map
-        map[nums[i]] = i;
+        // Return empty vector if no pair found
+        return {};
     }
-
-    // Return empty vector if no pair found
-    return {};
-}
 };
 ```

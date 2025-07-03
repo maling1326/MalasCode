@@ -21,6 +21,20 @@ karakter berulang adalah `a` dan `b`, sehingga `result` bertambah saat menemukan
 
 Menghitung jumlah kemungkinan berdasarkan kemunculan karakter berulang secara berurutan.
 
+## Complexity
+
+### Time Complexity = `O(n)`
+
+- Ada satu loop yang jalan dari awal sampai akhir string word, jadi iterasi sebanyak n kali (n = panjang string).
+- Di setiap iterasi cuma cek apakah karakter sekarang sama dengan karakter sebelumnya, lalu tambah result kalau sama — operasi ini cepat banget, O(1).
+- Jadi total waktu yang dibutuhkan adalah `O(n)`, artinya waktu berjalan sebanding dengan panjang string.
+
+### Space Complexity = `O(1)` (konstan)
+
+- Fungsi cuma pakai beberapa variabel sederhana (int result, char behind), yang ukurannya tetap dan gak tergantung panjang string.
+- Tidak ada struktur data tambahan yang dibuat selama proses.
+- Jadi penggunaan memori adalah `O(1)` alias konstan.
+
 ## Code
 
 ```cpp []

@@ -52,10 +52,25 @@ Jadi, kode ini buat nambahin dua angka yang disimpen di linked list. Nah, tiap n
 
 Intinya, kode ini nambahin dua angka yang disimpen di linked list digit per digit, sambil ngurus carry-nya juga. Cara kerjanya rekursif, jadi gampang banget buat nambahin digit selanjutnya.
 
+## Complexity
+
+### Time Complexity = `O(max(m,n))`
+
+- Fungsi ini rekursif dan setiap kali panggil memproses satu node dari kedua linked list.
+- Karena setiap langkah maju ke node berikutnya, dan jumlah node yang diproses paling banyak adalah panjang linked list yang lebih panjang dari l1 dan l2.
+- Jadi, waktu yang dibutuhkan sekitar `O(max(m, n))`, di mana m dan n adalah panjang linked list l1 dan l2.
+- Operasi di setiap langkah cuma penjumlahan dan pembuatan node baru, yang waktunya konstan.
+
+### Space Complexity = `O(max(m,n))`
+
+- Karena fungsi ini rekursif, setiap panggilan fungsi akan masuk ke stack rekursi.
+- Dalam kasus terburuk, kedalaman rekursi sama dengan jumlah node yang diproses, yaitu sekitar O(max(m, n)).
+- Selain itu, fungsi juga membuat linked list baru dengan jumlah node yang sama, jadi memori untuk node baru juga O(max(m, n)).
+- Jadi total penggunaan memori adalah `O(max(m, n))` untuk linked list baru + O(max(m, n)) untuk stack rekursi.
+
 ## Code
 
 ```cpp []
-
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)

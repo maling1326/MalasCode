@@ -32,10 +32,24 @@ Output : nums = [`1`, `2`, `3`, `4`]
 ## Inti
 
 - Iterasi cek elemen duplikat berurutan
-
 - Simpan elemen unik di posisi depan
-
 - Hapus sisa elemen setelah elemen unik terakhir
+
+## Complexity
+
+### Time Complexity = `O(n)`
+
+- Ada satu loop yang jalan dari indeks 1 sampai akhir vector, jadi iterasi sebanyak n-1 kali (n = ukuran nums).
+- Di dalam loop cuma ada operasi perbandingan dan assignment yang cepat (O(1)).
+- Setelah loop selesai, ada operasi erase untuk menghapus elemen sisanya.
+- Fungsi erase di vector dari posisi tertentu sampai akhir juga berjalan dalam waktu O(k), di mana k adalah jumlah elemen yang dihapus.
+- Total waktu kira-kira `O(n)` karena loop dan erase sama-sama linear terhadap ukuran vector.
+
+### Space Complexity = `O(1)`
+
+- Fungsi ini mengubah vector nums secara in-place, jadi gak pakai struktur data tambahan yang ukurannya tergantung n.
+- Variabel unique dan beberapa variabel lain cuma pakai memori konstan.
+- Jadi penggunaan memori adalah `O(1)` alias konstan.
 
 ## Code
 
