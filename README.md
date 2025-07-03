@@ -2,7 +2,7 @@
 
 Kumpulan solusi problem LeetCode yang sudah saya submit, dibuat untuk dokumentasi dan referensi belajar.
 
-![Aku Montelli](<Aku Montelli.jpg>)
+![Aku Montelli](https://cdn.discordapp.com/attachments/1287682749246734420/1390216002800844811/image.png)
 
 ---
 
