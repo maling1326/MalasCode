@@ -70,13 +70,13 @@ int main() {
     std::cin >> target; 
     RESETL
 
-    NewLine NewLine
+    NewLine
 
     // Call twoSum to find indices of numbers adding to target
     num = solution.twoSum(num, target);
 
     // Print the resulting indices in formatted style
-    std::cout << "[" ;
+    std::cout << "Answer : [" ;
 
     // Reset muchCount to zero to use as index for printing
     muchCount = 0;
