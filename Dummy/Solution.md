@@ -14,6 +14,12 @@
 
 <!-- Inti code nya -->
 
+## Complexity
+
+### Time Complexity = `O()`
+
+### Space Complexity = `O()` 
+
 ## Code
 
 <!-- tempel code nya -->
