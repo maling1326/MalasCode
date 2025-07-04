@@ -1,5 +1,11 @@
 #include <iostream>
 
+// #include <vector>
+// using std::vector;
+
+// #include <string>
+// using std::string;
+
 // ANSI color codes for colored terminal output
 #define CYAN    "\033[36m"
 #define GREEN   "\033[32m"
@@ -11,14 +17,11 @@
 
 class Solution {
 public:
-    void dummy()
-    {
-        int a;
-    }
+    // Paste Function here
 };
 
 int main() {
-
+    Solution solution;
     
 
     return 0;
