@@ -13,8 +13,11 @@ Fungsi melakukan proses merge secara bertahap dengan mengambil elemen-elemen ter
 ## Contoh
 
 Misalkan:
+
+``` powershell
 nums1 = {1, 3, 5}
 nums2 = {2, 4, 6}
+```
 
 - Total elemen = 6, posisi tengah (half) = 4.
 - Proses merge mengambil elemen terkecil secara berurutan: 1 (dari nums1), 2 (dari nums2), 3 (dari nums1), 4 (dari nums2).
