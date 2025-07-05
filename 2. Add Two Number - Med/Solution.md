@@ -1,4 +1,4 @@
-# Add Two Numbers - Leetcode 2
+# Add Two Numbers - Leetcode `2`
 
 Jadi, kode ini buat nambahin dua angka yang disimpen di linked list. Nah, tiap node di linked list itu nyimpen satu digit angka, dan angka-angkanya itu dibalik, jadi digit satuan ada di node pertama.
 

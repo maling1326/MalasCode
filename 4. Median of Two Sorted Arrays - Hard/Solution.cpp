@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 #include <vector>
 using std::vector;
@@ -17,46 +18,76 @@ using std::vector;
 
 vector<int> StringToVectorInt(std::string text);
 
+// class Solution {
+// public:
+//     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+//         double solution;
+//         if (nums1.empty()){  
+//             solution = (nums2.size() % 2 == 0)
+//                               ? ((double)nums2[nums2.size() / 2 - 1] +
+//                                  (double)nums2[nums2.size() / 2]) /
+//                                     2
+//                               : nums2[nums2.size() / 2];
+//             return solution;
+//         }
+//         if (nums2.empty()) {
+//             solution = (nums1.size() % 2 == 0)
+//                               ? ((double)nums1[nums1.size() / 2 - 1] +
+//                                  (double)nums1[nums1.size() / 2]) /
+//                                     2
+//                               : nums1[nums1.size() / 2];
+//             return solution;
+//         }
+        
+//         int TotalNum = nums1.size() + nums2.size(),
+//             maxi1 = nums1.size(), maxi2 = nums2.size(),
+//             i1 {0}, i2 {0};
+
+//         for (int i = 0; i < TotalNum / 2 + 1; i++) {
+//             if (i1 == maxi1 || (nums1[i1] > nums2[i2] && i2 < maxi2)) {
+//                 nums1.push_back(nums2[i2]);
+//                 i2++;
+//             } else if (i1 < maxi1 || i2 == maxi2) {
+//                 nums1.push_back(nums1[i1]);
+//                 i1++;
+//             }
+//         }
+            
+//         solution = (TotalNum % 2 == 0)
+//                         ? ((double)nums1[nums1.size() - 1] +
+//                             (double)nums1[nums1.size() - 2]) /
+//                             2
+//                         : nums1[nums1.size() - 1];
+//         return solution;
+//     }
+// }; 
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         double solution;
-        if (nums1.empty()){  
-            solution = (nums2.size() % 2 == 0)
-                              ? ((double)nums2[nums2.size() / 2 - 1] +
-                                 (double)nums2[nums2.size() / 2]) /
-                                    2
-                              : nums2[nums2.size() / 2];
-            return solution;
-        }
-        if (nums2.empty()) {
-            solution = (nums1.size() % 2 == 0)
-                              ? ((double)nums1[nums1.size() / 2 - 1] +
-                                 (double)nums1[nums1.size() / 2]) /
-                                    2
-                              : nums1[nums1.size() / 2];
-            return solution;
-        }
-        
-        int TotalNum = nums1.size() + nums2.size(),
-            maxi1 = nums1.size(), maxi2 = nums2.size(),
-            i1 {0}, i2 {0};
+        int half  = (nums1.size() + nums2.size()) / 2 + 1,
+            max   = nums1.size() + nums2.size(),
+            maxi1 = nums1.size() - 1, maxi2 = nums2.size() - 1,
+            i1    = 0,                i2    = 0;
 
-        for (int i = 0; i < TotalNum / 2 + 1; i++) {
-            if (i1 == maxi1 || (nums1[i1] > nums2[i2] && i2 < maxi2)) {
-                nums1.push_back(nums2[i2]);
-                i2++;
-            } else if (i1 < maxi1 || i2 == maxi2) {
+        for (int i = 0; i < half; i++) {
+            bool canTakeFromNums1 = (i1 <= maxi1);
+            bool canTakeFromNums2 = (i2 <= maxi2);
+
+            if (canTakeFromNums1 && (!canTakeFromNums2 || nums1[i1] <= nums2[i2])) {
                 nums1.push_back(nums1[i1]);
                 i1++;
+            } else if (canTakeFromNums2) {
+                nums1.push_back(nums2[i2]);
+                i2++;
             }
         }
-            
-        solution = (TotalNum % 2 == 0)
-                        ? ((double)nums1[nums1.size() - 1] +
+
+        solution = (max % 2 == 0)
+                        ? (double)((double)nums1[nums1.size() - 1] +
                             (double)nums1[nums1.size() - 2]) /
                             2
-                        : nums1[nums1.size() - 1];
+                        : (double)nums1[nums1.size() - 1];
         return solution;
     }
 }; 
@@ -89,7 +120,7 @@ int main() {
     NewLine
     */    
     
-    std::cout << "Median dari kombinasi kedua vektor adalah " << GREEN << answer << RESET << "."; NewLine
+    std::cout << "Median dari kombinasi kedua vektor adalah " << GREEN << std::fixed << std::setprecision(4) << answer << RESET << "."; NewLine
     return 0;
 }
 

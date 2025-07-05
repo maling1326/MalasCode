@@ -1,4 +1,4 @@
-# Two Sums - Leet Code 1
+# Two Sums - Leet Code `1`
 
 [My Submission on Leetcode](https://leetcode.com/problems/two-sum/solutions/6910714/two-sums-hash-table-is-quite-easy-actual-c98r)
 

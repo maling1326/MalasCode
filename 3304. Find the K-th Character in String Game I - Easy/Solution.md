@@ -1,4 +1,4 @@
-# Penjelasan Fungsi `kthCharacter` - Leetcode 3304
+# Penjelasan Fungsi `kthCharacter` - Leetcode `3304`
 
 Fungsi `kthCharacter` ini menghasilkan karakter ke-`k` dari sebuah string yang dibangun secara bertahap.  
 String awalnya adalah "a", lalu setiap iterasi menambahkan karakter baru yang merupakan hasil menaikkan nilai ASCII dari karakter-karakter sebelumnya secara berulang.  

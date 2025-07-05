@@ -1,4 +1,4 @@
-# Penjelasan Fungsi `climbStairs` - Leetcode 70
+# Penjelasan Fungsi `climbStairs` - Leetcode `70`
 
 Fungsi ini menghitung jumlah cara untuk naik tangga dengan `n` anak tangga,  
 dengan aturan bisa naik 1 atau 2 anak tangga sekaligus.

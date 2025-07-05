@@ -1,4 +1,4 @@
-# Penjelasan Fungsi `removeDuplicates` - Leetcode 26
+# Penjelasan Fungsi `removeDuplicates` - Leetcode `26`
 
 Fungsi ini menghapus elemen duplikat dari vector terurut sehingga hanya menyisakan elemen unik.
 

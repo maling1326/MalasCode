@@ -1,4 +1,4 @@
-# Penjelasan Fungsi `JUDUL DISINI` - Leetcode `SOAL KEBERAPA`
+# Penjelasan Fungsi `strStr` - Leetcode `28`
 
 Fungsi strStr ini digunakan untuk mencari posisi kemunculan pertama sebuah substring (needle) di dalam string lain (haystack). Jika substring ditemukan, fungsi mengembalikan indeks posisi pertama kemunculannya, jika tidak ditemukan mengembalikan -1. Fungsi ini merupakan solusi untuk soal Leetcode nomor 28, yaitu "Implement strStr()".
 

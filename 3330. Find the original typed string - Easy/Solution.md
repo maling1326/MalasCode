@@ -1,4 +1,4 @@
-# Penjelasan Fungsi `possibleStringCount` - Leetcode 3330
+# Penjelasan Fungsi `possibleStringCount` - Leetcode `3330`
 
 Fungsi ini menghitung jumlah kemungkinan string yang dapat dibentuk dari `word`  
 dengan aturan: setiap karakter yang sama yang berurutan dapat dihitung sebagai pilihan tambahan.
