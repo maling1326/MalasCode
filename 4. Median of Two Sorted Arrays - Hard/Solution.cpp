@@ -65,32 +65,41 @@ class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         double solution;
+        // Hitung posisi tengah gabungan kedua array
         int half  = (nums1.size() + nums2.size()) / 2 + 1,
-            max   = nums1.size() + nums2.size(),
-            maxi1 = nums1.size() - 1, maxi2 = nums2.size() - 1,
-            i1    = 0,                i2    = 0;
+            max   = nums1.size() + nums2.size(),       // Total elemen gabungan
+            maxi1 = nums1.size() - 1,                   // Indeks terakhir nums1
+            maxi2 = nums2.size() - 1,                   // Indeks terakhir nums2
+            i1    = 0,                                  // Pointer untuk nums1
+            i2    = 0;                                  // Pointer untuk nums2
 
+        // Lakukan merge sampai posisi tengah gabungan
         for (int i = 0; i < half; i++) {
-            bool canTakeFromNums1 = (i1 <= maxi1);
-            bool canTakeFromNums2 = (i2 <= maxi2);
+            bool canTakeFromNums1 = (i1 <= maxi1);     // Apakah masih ada elemen di nums1
+            bool canTakeFromNums2 = (i2 <= maxi2);     // Apakah masih ada elemen di nums2
 
+            // Ambil elemen terkecil dari nums1 atau nums2 jika masih ada
             if (canTakeFromNums1 && (!canTakeFromNums2 || nums1[i1] <= nums2[i2])) {
-                nums1.push_back(nums1[i1]);
-                i1++;
+                nums1.push_back(nums1[i1]);             // Tambahkan elemen nums1 ke akhir nums1
+                i1++;                                  // Geser pointer nums1
             } else if (canTakeFromNums2) {
-                nums1.push_back(nums2[i2]);
-                i2++;
+                nums1.push_back(nums2[i2]);             // Tambahkan elemen nums2 ke akhir nums1
+                i2++;                                  // Geser pointer nums2
             }
         }
 
-        solution = (max % 2 == 0)
-                        ? (double)((double)nums1[nums1.size() - 1] +
-                            (double)nums1[nums1.size() - 2]) /
-                            2
-                        : (double)nums1[nums1.size() - 1];
+        // Hitung median berdasarkan total elemen ganjil/genap
+        if (max % 2 == 0) {
+            // Jika genap, rata-rata dua elemen tengah terakhir
+            solution = ((double)nums1[nums1.size() - 1] + (double)nums1[nums1.size() - 2]) / 2;
+        } else {
+            // Jika ganjil, elemen tengah terakhir
+            solution = (double)nums1[nums1.size() - 1];
+        }
         return solution;
     }
-}; 
+};
+
 
 int main() {
     Solution solution;
@@ -106,19 +115,6 @@ int main() {
     
     double answer = solution.findMedianSortedArrays(nums1, nums2);
     NewLine
-
-    /*
-    if (10 > nums1.size())
-    std::cout << nums1[nums1.size() - 1];
-    
-    NewLine
-    
-    for (int n : nums1)
-    {
-        std::cout << n << " ";
-    }
-    NewLine
-    */    
     
     std::cout << "Median dari kombinasi kedua vektor adalah " << GREEN << std::fixed << std::setprecision(4) << answer << RESET << "."; NewLine
     return 0;

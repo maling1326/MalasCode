@@ -20,7 +20,7 @@
 
 <!-- Penjelasan singkat time complexity -->
 
-### Space Complexity = `O()` 
+### Space Complexity = `O()`
 
 <!-- Penjelasan singkat space complexity -->
 
