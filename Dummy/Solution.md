@@ -1,4 +1,4 @@
-# Penjelasan Fungsi `JUDUL DISINI` - Leetcode `SOAL KEBERAPA`
+# Penjelasan Fungsi `JUDULDISINI` - Leetcode `SOALKEBERAPA`
 
 <!--Deskripsi atau penjelasan fungsi code -->
 
