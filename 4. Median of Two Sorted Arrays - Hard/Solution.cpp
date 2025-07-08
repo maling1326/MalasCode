@@ -16,51 +16,7 @@ using std::vector;
 #define RESETL  std::cout << "\033[0m";
 #define NewLine std::cout << "\n";
 
-vector<int> StringToVectorInt(std::string text);
-
-// class Solution {
-// public:
-//     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-//         double solution;
-//         if (nums1.empty()){  
-//             solution = (nums2.size() % 2 == 0)
-//                               ? ((double)nums2[nums2.size() / 2 - 1] +
-//                                  (double)nums2[nums2.size() / 2]) /
-//                                     2
-//                               : nums2[nums2.size() / 2];
-//             return solution;
-//         }
-//         if (nums2.empty()) {
-//             solution = (nums1.size() % 2 == 0)
-//                               ? ((double)nums1[nums1.size() / 2 - 1] +
-//                                  (double)nums1[nums1.size() / 2]) /
-//                                     2
-//                               : nums1[nums1.size() / 2];
-//             return solution;
-//         }
-        
-//         int TotalNum = nums1.size() + nums2.size(),
-//             maxi1 = nums1.size(), maxi2 = nums2.size(),
-//             i1 {0}, i2 {0};
-
-//         for (int i = 0; i < TotalNum / 2 + 1; i++) {
-//             if (i1 == maxi1 || (nums1[i1] > nums2[i2] && i2 < maxi2)) {
-//                 nums1.push_back(nums2[i2]);
-//                 i2++;
-//             } else if (i1 < maxi1 || i2 == maxi2) {
-//                 nums1.push_back(nums1[i1]);
-//                 i1++;
-//             }
-//         }
-            
-//         solution = (TotalNum % 2 == 0)
-//                         ? ((double)nums1[nums1.size() - 1] +
-//                             (double)nums1[nums1.size() - 2]) /
-//                             2
-//                         : nums1[nums1.size() - 1];
-//         return solution;
-//     }
-// }; 
+vector<int> StringToVectorInt(std::string text); 
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
