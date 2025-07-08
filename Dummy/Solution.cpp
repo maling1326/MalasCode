@@ -1,6 +1,6 @@
 #include <iostream>
 #include <chrono>
-#include "../debug.h"
+#include "../etc/debug.h"
 
 // #include <iomanip>
 

@@ -2,7 +2,7 @@
 
 Kumpulan solusi problem LeetCode yang sudah saya submit, dibuat untuk dokumentasi dan referensi belajar.
 
-![alt text](<Aku Montelli.jpg>)
+![Aku Montelli](<etc/Aku Montelli.jpg>)
 
 ---
 
