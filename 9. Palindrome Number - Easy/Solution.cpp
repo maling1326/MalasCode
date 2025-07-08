@@ -16,8 +16,8 @@
 // #include <algorithm>
 // #define all(v) v.begin(), v.end()
 
-// #include <string>
-// using std::string;
+#include <string>
+using std::string;
 
 // ANSI color codes for colored terminal output
 #define RED    "\033[31m"
@@ -60,15 +60,37 @@ public:
 
 class Solution {
 public:
-    // Paste Function here
+    bool isPalindrome(int x) {
+        string nums = std::to_string(x);  // Konversi angka ke string
+        for (int i = 0; i < nums.size() / 2; i++) {
+            if (nums[i] != nums[nums.size() - i - 1])  // Bandingkan karakter depan & belakang
+                return false;  // Bukan palindrome
+        }
+        return true;  // Palindrome
+    }
 };
+
 
 int main() {
     Stopwatch sw;
     Solution solution;
     
-    // sw.start();
-    // sw.stop();
+    int nums;
+
+    std::cout << "Cek Angka : " << CYAN;
+    std::cin  >> nums; RESETL
+
+    NewLine
+
+    sw.start();
+    bool check = solution.isPalindrome(nums);
+    sw.stop();
+
+    if (check)
+        std::cout << "Angka " << CYAN << nums << RESET << ", " << GREEN << BOLD << "Merupakan " << RESET << "Palindrom.";
+    else
+        std::cout << "Angka " << CYAN << nums << RESET << ", " << RED << BOLD << "Bukanlah " << RESET << "Palindrom.";
+
 
     return 0;
 }
