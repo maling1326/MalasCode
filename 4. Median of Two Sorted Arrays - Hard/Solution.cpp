@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include "../debug.h"
 
 #include <vector>
 using std::vector;
