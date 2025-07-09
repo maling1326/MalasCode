@@ -26,4 +26,6 @@
 
 ## Code
 
-<!-- tempel code nya -->
+```cpp []
+// Tempel Kode Disini
+```

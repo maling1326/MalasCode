@@ -20,8 +20,9 @@
 // using std::string;
 
 // ANSI color codes for colored terminal output
-#define RED    "\033[31m"
+#define RED     "\033[31m"
 #define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
 #define CYAN    "\033[36m"
 
 #define BOLD      "\033[1m"
@@ -48,13 +49,13 @@ public:
     }
 
     // Hentikan stopwatch dan kembalikan durasi dalam milidetik
-    void stop() {
-        if (!running) std::cout << "Total Runtime : " << GREEN << 0; RESETL NewLine // Jika belum start, kembalikan 0
+    int stop() {
+        if (!running) {std::cout << "Total Runtime : " << GREEN << 0; RESETL NewLine} // Jika belum start, kembalikan 0
         auto end_time = clock::now();
         running = false;
         // Hitung durasi dalam milidetik
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
-        std::cout << "Total Runtime : " << GREEN << duration.count() << RESET << " ms"; NewLine
+        return duration.count();
     }
 };
 
