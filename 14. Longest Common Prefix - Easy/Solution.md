@@ -21,7 +21,7 @@ Fungsi longestCommonPrefix digunakan untuk mencari prefix terpanjang yang sama d
 
 ## Inti
 
-- Bandingkan karakter per karakter pada semua string berdasarkan string pertama.
+- Bandingkan karakter per karakter pada semua string berdasarkan string pertama.____
 - Hentikan saat ketidaksesuaian ditemukan dan kembalikan substring prefix.
 
 ## Complexity
