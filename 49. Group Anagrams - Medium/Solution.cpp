@@ -92,41 +92,83 @@ public:
     }
 };
 
-vector<int> stringToIntegerVector(string text) {
-    int begin = 0;
-    vector<int> result;
+// vector<int> stringToIntegerVector(string text) {
+//     int begin = 0;
+//     vector<int> result;
+//     for (int i = 0; i < text.size(); i++) {
+//         if (text[i] == ',' || text[i] == ' ') {
+//             if (i > begin) {  // avoid empty substrings
+//                 result.push_back(stoi(text.substr(begin, i - begin)));
+//             }
+//             begin = i + 1;  // move begin to the character after the delimiter
+//         }
+//         if (i == text.size() - 1) {
+//             if (i >= begin) {
+//                 result.push_back(stoi(text.substr(begin, i - begin + 1)));
+//             }
+//         }
+//     }
+//     return result;
+// }
 
+vector<string> stringToStringVector(string text) {
+    int begin = 0;
+    vector<string> result;
     for (int i = 0; i < text.size(); i++) {
         if (text[i] == ',' || text[i] == ' ') {
             if (i > begin) {  // avoid empty substrings
-                result.push_back(stoi(text.substr(begin, i - begin)));
+                result.push_back(text.substr(begin, i - begin));
             }
             begin = i + 1;  // move begin to the character after the delimiter
         }
         if (i == text.size() - 1) {
             if (i >= begin) {
-                result.push_back(stoi(text.substr(begin, i - begin + 1)));
+                result.push_back(text.substr(begin, i - begin + 1));
             }
         }
     }
-
     return result;
 }
 /*--------------------*/
 /*  Default Function  */
 class Solution {
 public:
-    // Paste Function here
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> anagrams;
+
+        for (auto& s : strs) {
+            string temp = s;
+            sort(temp.begin(), temp.end());
+            anagrams[temp].push_back(s);
+        }
+
+        vector<vector<string>> ans;
+        for (auto& m : anagrams) 
+            ans.push_back(move(m.second));
+
+        return ans;
+    }
 };
 
 int main() {
-    // Stopwatch sw;
+    Stopwatch sw;
     Solution solution;
+
+    string line;
+
+    cout << "Check Groups of Anagrams, separated it with ',' or ' '\n -> " << CYAN;
+    getline(cin, line); RESETL
+
+    vector<string> perWord = stringToStringVector(line);
+
+    sw.start();
+    vector<vector<string>> perGroup = solution.groupAnagrams(perWord);
+    int time = sw.stop();
     
-    // sw.start();
-    // int time = sw.stop();
-    // cout << "Total Runtime : " << YELLOW << time << RESET << " ms"; NewLine
-
-
+    cout << "Group of Anagrams :\n";
+    for (int i = 0; i < perGroup.size(); i++) {
+        outputln ("[", CYAN, perGroup[i], RESET, "]");
+    }
+    cout << "Total Runtime : " << YELLOW << time << RESET << " ms"; NewLine
     return 0;
 }
