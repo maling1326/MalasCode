@@ -116,15 +116,39 @@ vector<int> stringToIntegerVector(string text) {
 /*  Default Function  */
 class Solution {
 public:
-    // Paste Function here
+    bool isAnagram(string s, string t) {
+        if (s.size() != t.size())
+            return false;
+
+        int letter[26] = {0};
+
+        for (char c : s) 
+            letter[c - 'a']++;
+
+        for (char c : t) {
+            letter[c - 'a']--;
+            if (letter[c - 'a'] < 0)
+                return false;
+        }
+        return true;
+    }
 };
 
 int main() {
-    // Stopwatch sw;
+    Stopwatch sw;
     Solution solution;
-    
-    // sw.start();
-    // int time = sw.stop();
 
+    string first, second;
+    cout << "Is Both string is anagram?\n First  : " << CYAN;
+    input (first); RESETL
+    cout << " Second : " << CYAN;
+    input (second); RESETL
+    
+    sw.start();
+    bool anagram = solution.isAnagram(first, second);
+    int time = sw.stop();
+
+    cout << (anagram ? GREEN : RED) << (anagram ? "YES" : "NO") << RESET << ", They " << CYAN << (anagram ? "are" : "were'nt") << RESET << " anagram."; NewLine
+    cout << "Total Runtime : " << YELLOW << time << RESET << " ms"; NewLine
     return 0;
 }

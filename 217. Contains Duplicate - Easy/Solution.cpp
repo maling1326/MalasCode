@@ -114,17 +114,33 @@ vector<int> stringToIntegerVector(string text) {
 }
 /*--------------------*/
 /*  Default Function  */
+
 class Solution {
 public:
-    // Paste Function here
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_map<int, int> map;
+        for (int i = 0; i < nums.size(); i++) {
+            map[nums[i]]++;
+            if (map[nums[i]] > 1)
+                return true;
+        }
+        return false;
+    }
 };
 
 int main() {
-    // Stopwatch sw;
+    Stopwatch sw;
     Solution solution;
     
-    // sw.start();
-    // int time = sw.stop();
+    cout << "Input Nums separated by ',' or ' ' : " << CYAN;
+    string text;
+    getline (cin, text); RESETL
+    vector<int> nums = stringToIntegerVector(text);
+
+    sw.start();
+
+    cout << "There is" << GREEN << ((solution.containsDuplicate(nums)) ? " a " : " no ") << RESET << "Duplicate"; NewLine
+    cout << "Total Runtime : " << YELLOW << sw.stop() << RESET << " ms"; NewLine
 
     return 0;
 }
