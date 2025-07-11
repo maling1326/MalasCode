@@ -92,26 +92,43 @@ public:
     }
 };
 
-vector<int> stringToIntegerVector(string text) {
-    int begin = 0;
-    vector<int> result;
+// vector<int> stringToIntegerVector(string text) {
+//     int begin = 0;
+//     vector<int> result;
+//     for (int i = 0; i < text.size(); i++) {
+//         if (text[i] == ',' || text[i] == ' ') {
+//             if (i > begin) {  // avoid empty substrings
+//                 result.push_back(stoi(text.substr(begin, i - begin)));
+//             }
+//             begin = i + 1;  // move begin to the character after the delimiter
+//         }
+//         if (i == text.size() - 1) {
+//             if (i >= begin) {
+//                 result.push_back(stoi(text.substr(begin, i - begin + 1)));
+//             }
+//         }
+//     }
+//     return result;
+// }
 
-    for (int i = 0; i < text.size(); i++) {
-        if (text[i] == ',' || text[i] == ' ') {
-            if (i > begin) {  // avoid empty substrings
-                result.push_back(stoi(text.substr(begin, i - begin)));
-            }
-            begin = i + 1;  // move begin to the character after the delimiter
-        }
-        if (i == text.size() - 1) {
-            if (i >= begin) {
-                result.push_back(stoi(text.substr(begin, i - begin + 1)));
-            }
-        }
-    }
-
-    return result;
-}
+// vector<string> stringToStringVector(string text) {
+//     int begin = 0;
+//     vector<string> result;
+//     for (int i = 0; i < text.size(); i++) {
+//         if (text[i] == ',' || text[i] == ' ') {
+//             if (i > begin) {  // avoid empty substrings
+//                 result.push_back(text.substr(begin, i - begin));
+//             }
+//             begin = i + 1;  // move begin to the character after the delimiter
+//         }
+//         if (i == text.size() - 1) {
+//             if (i >= begin) {
+//                 result.push_back(text.substr(begin, i - begin + 1));
+//             }
+//         }
+//     }
+//     return result;
+// }
 /*--------------------*/
 /*  Default Function  */
 class Solution {
