@@ -111,38 +111,72 @@ public:
 //     return result;
 // }
 
-// vector<string> stringToStringVector(string text) {
-//     int begin = 0;
-//     vector<string> result;
-//     for (int i = 0; i < text.size(); i++) {
-//         if (text[i] == ',' || text[i] == ' ') {
-//             if (i > begin) {  // avoid empty substrings
-//                 result.push_back(text.substr(begin, i - begin));
-//             }
-//             begin = i + 1;  // move begin to the character after the delimiter
-//         }
-//         if (i == text.size() - 1) {
-//             if (i >= begin) {
-//                 result.push_back(text.substr(begin, i - begin + 1));
-//             }
-//         }
-//     }
-//     return result;
-// }
+vector<string> stringToStringVector(string text) {
+    int begin = 0;
+    vector<string> result;
+    for (int i = 0; i < text.size(); i++) {
+        if (text[i] == ',') {
+            if (i > begin) {  // avoid empty substrings
+                result.push_back(text.substr(begin, i - begin));
+            }
+            begin = i + 1;  // move begin to the character after the delimiter
+        }
+        if (i == text.size() - 1) {
+            if (i >= begin) {
+                result.push_back(text.substr(begin, i - begin + 1));
+            }
+        }
+    }
+    return result;
+}
 /*--------------------*/
 /*  Default Function  */
 class Solution {
 public:
-    // Paste Function here
+
+    string encode(vector<string>& strs) {
+        string ans;
+        for (string s : strs)
+            ans += s + "0xE";
+        return ans;
+    }
+
+    vector<string> decode(string s) {
+        vector<string> ans;
+        int awal = 0;
+        for (int i = 0; i < s.size(); i++) {
+            if (s.substr(i, 3) == "0xE") {
+                ans.push_back(s.substr(awal, i - awal));
+                awal = i + 3;
+            }
+        }
+        return ans;
+    }
 };
 
 int main() {
-    // Stopwatch sw;
+    Stopwatch sw;
     Solution solution;
     
-    // sw.start();
-    // int time = sw.stop();
-    // cout << "Total Runtime : " << YELLOW << time << RESET << " ms"; NewLine
+    string text;
+    cout << "Input sentences separated by ','\n -> " << CYAN;
+    getline(cin, text); RESETL
+
+    vector<string> separated_text = stringToStringVector(text);
+
+    sw.start();
+    text = solution.encode(separated_text);
+    int time = sw.stop();
+
+    sw.start();
+    separated_text = solution.decode(text);
+    time += sw.stop();
+
+    // debug ("Whole Text     :", text);
+    // debug ("Separated Text :", separated_text);
+    outputln ("Encoded Text :", GREEN, text, RESET);
+    outputln ("Decoded Text :", GREEN, separated_text, RESET);
+    cout << "Total Runtime : " << YELLOW << time << RESET << " ms"; NewLine
 
 
     return 0;
