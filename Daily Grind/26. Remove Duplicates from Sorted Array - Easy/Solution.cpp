@@ -1,5 +1,4 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using std::vector;
 
 // ANSI color codes for colored terminal output
@@ -38,17 +37,7 @@ void quickSort(vector<int>& vec, int left, int right) {
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        int unique{1};
-        for (int i = 1; i < nums.size(); i++)
-        {
-            if (nums[i - 1] == nums[i])
-                continue;
-
-            unique++;
-            nums[unique - 1] = nums[i];
-        }
-        nums.erase(nums.begin() + unique, nums.end());
-        return unique;
+        return unique(nums.begin(), nums.end()) - nums.begin();
     }
 };
 

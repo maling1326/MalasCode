@@ -92,10 +92,25 @@ public:
     }
 };
 
-// void PrintArr (int arr[], int max) {
+// void PrintArr (string text, int arr[], int max) {
+//     cout << text << " : [";
 //     for (int i = 0; i < max; i++)
-//         cout << arr[i] <<" ";
-//     NewLine
+//         cout << GREEN << arr[i] << RESET << ",";
+//     cout << "]";
+// }
+
+template <typename T>
+// void print2DVector (string text, vector<vector<T>> vec) {
+//     cout << text << " : [";
+//     for (int i = 0; i < vec.size(); i++) {
+//         cout << "[";
+//         for (auto D1 : vec[i])
+//             cout << GREEN << D1 << RESET << ",";
+//         cout << "]";
+//         if (i != vec.size() - 1)
+//             cout << ",";
+//     }
+//     cout << "]";
 // }
 
 // vector<int> stringToIntegerVector(string text) {
