@@ -48,7 +48,33 @@ static const auto __PROGRAM_START_TIME = chrono::steady_clock::now();static cons
 
 class Solution {
 public:
-    // Paste Function here
+    void testbool(int max) {
+        scope("Solution -> Testing");
+        vector<string> dev(max);
+        input(dev);
+        for (int i = 0; i < max; i++) {
+            if (isValid(dev[i]))
+                debugln (dev[i], "Valid");
+            else
+                debugln (dev[i], "Tidak Valid");
+        }   
+    }
+    bool isValid(string s) {
+        stack<char> ch;
+        for (char c : s) {
+            if (c == '(' || c == '[' || c == '{')
+                ch.push(c);
+            else {
+                if (ch.empty()) return false;
+                if ((ch.top() != '[' && c == ']')
+                 || (ch.top() != '{' && c == '}')
+                 || (ch.top() != '(' && c == ')'))
+                    return false;
+                ch.pop();
+            }
+        }
+        return ((ch.empty()) ? true : false);
+    }
 };
 
 int main() {
@@ -60,14 +86,21 @@ __local_dbg__:
     scope("Main");
 __main__:
     /* Test Case */
-
+    // s.testing(2);
     /* Test Case */
 
-    outputln ("Hello World");
-
+    str text;
+    input (text);
+    
+    if (s.isValid(text))
+        outputln ("|-->", GREEN, "Valid", RESET);
+    else
+        outputln ("|-->",  RED, "Tidak Valid", RESET);
     return 0;
 __note__:
-    /**/
+    /*
+    Sayang apa kabar denganmu
+    */
 }
 
 /*
