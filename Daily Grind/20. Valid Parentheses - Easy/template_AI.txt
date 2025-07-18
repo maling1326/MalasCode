@@ -2,8 +2,41 @@ berdasarkan code yang disediakan dibawah, lengkapi struktur markdown yang sudah 
 
 dan lengkapi bagian soal dengan soal yang akan saya Paste dibawah, dan singkat soalnya supaya hanya inti nya saja yang ditulis
 
-<!--PASTE SOAL DISINI-->
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+    Open brackets must be closed by the same type of brackets.
+    Open brackets must be closed in the correct order.
+    Every close bracket has a corresponding open bracket of the same type.
+
+ 
+
+Example 1:
+
+Input: s = "()"
+
+Output: true
+
+Example 2:
+
+Input: s = "()[]{}"
+
+Output: true
+
+Example 3:
+
+Input: s = "(]"
+
+Output: false
+
+Example 4:
+
+Input: s = "([])"
+
+Output: true
+
 
 Link soal tsb
 
-<!--PASTE LINK SOAL-->
+https://leetcode.com/problems/valid-parentheses/description/
