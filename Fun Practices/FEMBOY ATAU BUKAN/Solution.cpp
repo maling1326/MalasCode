@@ -142,8 +142,7 @@ int main() {
     int chara[26] {0}, 
         unique    {0};
     string word;
-    cout << "Masukkan Nama : " << CYAN;
-    getline(cin, word); RESETL
+    getline(cin, word);
 
     for (char c : word) {
         c = tolower(c);
@@ -152,10 +151,9 @@ int main() {
     }
 
     if (unique % 2 == 1) 
-        outputln (RED,   "IGNORE HIM!");
+        outputln ("IGNORE HIM!");
     else 
-        outputln (GREEN, "CHAT WITH HER! <3");    
-    RESETL
+        outputln ("CHAT WITH HER!");    
 
     return 0;
 }

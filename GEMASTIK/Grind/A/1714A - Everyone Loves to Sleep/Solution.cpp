@@ -513,7 +513,60 @@ namespace {
 
 class Solution {
 public:
-    // Paste Function here
+    vector<vector<int>> remainingTime (int Example_Time_Max) {
+        scope ("In function");
+        vvi result (Example_Time_Max);
+        bool SkipIteration;
+        for (int i = 0; i < (Example_Time_Max); ++i) {
+            SkipIteration = false;
+            scope("I-Iteration");
+            int max, H, M, temp;
+            input (max, H, M);
+            
+            M += H * 60;
+            debugln(max, H, M);
+            vector<int> nums(max);
+            for (int j = 0; j < (max); ++j) {
+                scope("J-Iteration");
+                input(temp, nums[j]);
+                nums[j] += temp * 60;
+                temp = 0;
+                debugln(nums[j]);
+                if (nums[j] == M) {
+                    debugln("J Same as M", nums[j], M);
+                    M = nums[j] - M;
+                    result[i].push_back(M / 60);
+                    result[i].push_back(M % 60);
+                    SkipIteration = true;
+                }
+            }
+            if (SkipIteration) {
+                debugln(SkipIteration, result[i]);
+                continue;
+            }
+            debugln("Bef Sort", nums, M);
+            sort (nums.begin(), nums.end());
+            std::stable_partition(nums.begin(), nums.end(), [M](int x) { return x >= M; });
+            debugln("Aft Sort", nums, M);
+
+            if (nums[0] < M) {
+                scope("Lower than M");
+                debugln("Bef 1440", M);
+                M = 1440 - (M - nums[0]);
+                debugln("Aft 1440", M, M/ 60, M % 60);
+                result[i].push_back(M / 60);
+                result[i].push_back(M % 60);
+            }
+            else {
+                M = nums[0] - M;
+                result[i].push_back(M / 60);
+                result[i].push_back(M % 60);
+            }
+            debugln ("Result", result[i]);
+        }
+        debugln("Returned", result);
+        return result;
+    }
 };
 
 int main() {
@@ -522,12 +575,20 @@ int main() {
 
 _m__dbg:
 #ifdef LOCAL_DBG
-    Redirect(R"()");
+    Redirect(R"(9 2 5 19 5 18 5 20 6 0 11 0 16 0 12 0 10 0 11 0 6 0 9 4 23 36 23 31 23 43 23 29 23 43 9 16 34 16 24 16 17 16 40 16 42 16 21 16 34 16 39 16 37 16 41 3 1 48 1 54 1 45 1 47 8 13 39 13 28 13 32 13 40 13 26 13 41 13 49 13 51 13 40 10 1 8 1 31 0 53 1 19 1 22 1 34 0 43 1 3 1 20 1 31 1 17 10 2 39 2 42 2 40 2 38 2 38 2 41 2 36 2 35 2 42 2 40 2 41 7 21 4 21 4 21 0 20 53 21 2 20 52 21 15 21 6 3 1 6 13 8 0 3 6 0 12 30 14 45 6 0 2 23 35 20 15 10 30)");
 #endif
 
 _m__main:
-    outputln ("Hello World");
-
+    int out_max;
+    input (out_max);
+    vvi x = s.remainingTime(out_max);
+    
+    // input(out_max);
+    // vvi y = s.remainingTime(out_max);
+    // output("First");
+    
+    output(delim(x, "\n"));
+    // output("Second\n", delim(y, "\n"));
     return 0;
 __note__:
     /**/
