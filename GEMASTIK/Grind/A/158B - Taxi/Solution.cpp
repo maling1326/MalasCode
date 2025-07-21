@@ -513,7 +513,108 @@ namespace {
 
 class Solution {
 public:
-    // Paste Function here
+    void testInt(int m) {
+        vector<int> correct = {4, 5, 5, 3, 1, 3, 3, 1,1,1,1,1,1,2,2,1,1,2,2,2,2,2,2,3,3,3,4,1,2,2,2,2,3,2,2,3,3,1},
+                    check (m);
+        for (int i = 0; i < (m); ++i) {
+            scope("TEST");
+            int muchgroup;
+            input (muchgroup);
+            check[i] = HowMuchTaxi(muchgroup);
+        }
+        debugln (correct, check);
+        for (int i = 0; i < (m); ++i) {
+            if (correct[i] == check[i])
+                debugln ("CORRECT", correct[i], check[i], i + 1);
+            else
+                debugln ("_WRONG_", correct[i], check[i], i + 1);
+        }
+    }
+    // Oldest Version
+    int HowMuchTaxi2 (vector<int> groups) {
+        scope("Much Taxis Function");
+        int sums = 0;
+        vector<int> m (4);
+        debugln ("Intitalize", groups, sums, m);
+        
+        for (int i = 0; i < (groups.size()); ++i)
+            m[groups[i] - 1]++;
+        debugln ("_Start_", groups, sums, m);
+
+        // sums of 4
+        sums  = m[3]; 
+        m[3] = 0;                             // Clear appearance of numbers 4 to 0
+        debugln ("4______", groups, sums, m);
+
+        // sums of 3 and 1
+        sums += m[2]; 
+        m[0] -= m[2]; m[0] = (m[0] < 0) ? 0 : m[0]; // Substract much appearance of numbers 1 to how much is numbers 3 appear
+        m[2] = 0;                                   // Clear appearance of numbers 3 to 0
+        debugln ("3 and 1", groups, sums, m);
+
+        // sums of 2
+        sums += (m[1] == 0) ? 0 : m[1] / 2; 
+        m[1] = m[1] % 2;                      // Take a modulus of 2
+        debugln ("2______", groups, sums, m);
+
+        // sums of 2 and 1
+        if (m[1] == 1) {
+            sums += 1;
+            m[0] -= m[1] * 2; m[0] = (m[0] < 0) ? 0 : m[0]; // Substract much appearance of numbers 1 to how much is numbers 2 appear plus 2 per appearance
+            m[1] = 0;                                   // Clear appearance of numbers 2 to 0
+        }
+        debugln ("2 and 1", groups, sums, m);
+
+        // sums of 1
+        sums += (m[0] + 3) / 4; 
+        m[0] = 0;                             // Clear appearance of numbers 1 to 0
+        debugln ("1______", groups, sums, m);
+
+        return sums;
+    }
+
+    // Newest Version
+    int HowMuchTaxi (int n) {
+        scope("Testing New Approach");
+        debugln (n);
+        int s, a = 0, b = 0, c = 0, d = 0;
+
+        for (int i = 0; i < (n); ++i) {
+            input (s);
+            switch (s) { case 1: a++; break;
+                        case 2: b++; break;
+                        case 3: c++; break;
+                        case 4: d++; break; }
+        }
+
+        // Grup 4 orang di masukin Taxi
+        s = d;
+        debugln("d to s", s, d);
+
+        // Grup 3 orang dan 1 Orangs
+        s += c;
+        a -= std::min(c, a);
+        debugln("c to s", s, c, a);
+
+        // Grup 2 Orang dimasukan
+        s += b / 2;
+        b %= 2;
+        debugln("b to s", s, b);
+
+        if (b) { // Jika ada sisa dari grup 2, maka digabung dengan grup 1
+            s++;
+            a -= std::min(2, a);
+            debugln("Remain b", s, b);
+        }
+
+        // Grup 1 dimasukkan semua
+        s += (a + 3) / 4;
+
+        outputln (s);
+        debugln ("After", n, s, a);
+
+        return s;
+    }
 };
 
 int main() {
@@ -522,23 +623,92 @@ int main() {
 
 _m__dbg:
 #ifdef LOCAL_DBG
-    Redirect(R"(4#word#localization#internationalization#pneumonoultramicroscopicsilicovolcanoconiosis)");
+    Redirect(R"(
+5
+1 2 4 3 3
+8
+2 3 4 4 2 1 3 1
+5
+4 4 4 4 4
+12
+1 1 1 1 1 1 1 1 1 1 1 1
+2
+2 1
+4
+3 2 1 3
+4
+2 4 1 3
+1
+1
+1
+2
+1
+3
+1
+4
+2
+1 1
+2
+2 2
+2
+3 3
+2
+4 4
+2
+2 1
+2
+3 1
+2
+4 1
+2
+2 3
+2
+4 2
+2
+4 3
+4
+2 2 1 1
+4
+3 1 3 1
+4
+1 4 1 4
+4
+2 2 3 3
+4
+2 4 4 2
+4
+3 3 4 4
+3
+1 1 2
+3
+1 3 1
+3
+4 1 1
+3
+3 2 2
+3
+2 4 2
+3
+3 4 3
+3
+2 2 1
+3
+1 3 3
+3
+4 4 1
+3
+3 3 2
+1
+1
+)");
+    s.testInt(37);
 #endif
 
 _m__main:
-    int max;
-    input (max);
-    
-    vector<string> txt (max);
-    for (int i = 0; i < (max); ++i) {
-        input (txt[i]);
-        if (txt[i].size() <= 10) continue;
-        
-        txt[i] = txt[i][0] + to_string(txt[i].size() - 2) + txt[i][txt[i].size() - 1];
-        debugln(txt[i], txt[i].size());
-    }
+    int muchgroup;
+    input (muchgroup);
 
-    outputln(txt);
+    outputln(s.HowMuchTaxi(muchgroup));
 
     return 0;
 __note__:

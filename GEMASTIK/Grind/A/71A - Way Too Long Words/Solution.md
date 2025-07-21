@@ -1,40 +1,52 @@
-# 📝 Penjelasan Fungsi `JUDULDISINI` - Leetcode `SOALKEBERAPA`
+# 📝 Penjelasan Fungsi `LongWords` - Leetcode `71A`
 
-<!--Deskripsi atau penjelasan fungsi code -->
+Fungsi ini digunakan untuk mengubah kata yang terlalu panjang menjadi bentuk singkat sesuai aturan soal.
 
 ## ❓ Soal
 
-<!--link Soal-->
-<!-- Menjelaskan soal dengan ringkas, atau intinya saja -->
+[Link Soal](https://codeforces.com/problemset/problem/71/A)
+Inti soal: Jika kata lebih dari 10 karakter, ubah jadi singkatan: huruf pertama + jumlah huruf di tengah + huruf terakhir. Kata ≤10 karakter tetap.
 
 ## 🔗 Penjelasan fungsi berdasarkan Soal yang diberikan
 
-<!-- Penjelasan sangkut paut Code dengan soalnya, misal bagian ini berhubungan dengan soal bagian ini -->
+Kode melakukan iterasi pada setiap kata, jika panjangnya >10 maka diubah jadi singkatan sesuai aturan, jika tidak tetap.
 
 ## 💡 Inti
 
-<!-- Inti code nya -->
+Inti kode: Cek panjang kata, jika >10 ubah jadi singkatan, jika tidak tetap.
 
 ## ⚙️ Cara kerja
 
-<!-- Menjelaskan bagaimana cara kerjanya code yang aku buat dengan analogi yang mudah dipahami -->
+Bayangkan kata sebagai barisan huruf. Jika terlalu panjang, ambil huruf pertama dan terakhir, hitung jumlah huruf di tengah, lalu gabungkan jadi singkatan.
 
 ## 📦 Contoh
 
-<!-- contoh input dari code nya, bisa input, penjelasan singkat stepnya, output -->
+- Input: localization
+- Proses: l + 10 + n → l10n
+- Output: l10n
+
+- Input: word
+- Proses: Panjang ≤10, tetap
+- Output: word
 
 ## 📊 Complexity
 
-### ⏱️ Time Complexity = `O()`
+### ⏱️ Time Complexity = `O(n)`
 
-<!-- Penjelasan singkat time complexity -->
+Iterasi satu kali untuk setiap kata.
 
-### 🗂️ Space Complexity = `O()`
+### 🗂️ Space Complexity = `O(n)`
 
-<!-- Penjelasan singkat space complexity -->
+Menyimpan hasil kata dalam vector.
 
 ## 💻 Code
 
-```cpp []
-// Paste Code Disini
+```cpp
+vector<string> txt (max);
+for (int i = 0; i < (max); ++i) {
+    input (txt[i]);
+    if (txt[i].size() <= 10) continue;
+    
+    txt[i] = txt[i][0] + to_string(txt[i].size() - 2) + txt[i][txt[i].size() - 1];
+}
 ```

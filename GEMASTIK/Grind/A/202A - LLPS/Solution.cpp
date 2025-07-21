@@ -513,7 +513,13 @@ namespace {
 
 class Solution {
 public:
-    // Paste Function here
+    void lexicographicallyLargestPalindromicSubsequence(string& s) {
+        if (s[0] == s.size() - 1) return;
+        sort(s.begin(), s.end());
+        s = s.substr(lower_bound(s.begin(), s.end(), s[s.size() - 1]) - s.begin(), s[s.size() - 1]);
+        //           ^                                                             ^
+        //  Take the position of the same letter as the end of the string        End of the string
+    }
 };
 
 int main() {
@@ -522,23 +528,16 @@ int main() {
 
 _m__dbg:
 #ifdef LOCAL_DBG
-    Redirect(R"(4#word#localization#internationalization#pneumonoultramicroscopicsilicovolcanoconiosis)");
+    Redirect(R"(jokowwwiW)");
 #endif
 
 _m__main:
-    int max;
-    input (max);
-    
-    vector<string> txt (max);
-    for (int i = 0; i < (max); ++i) {
-        input (txt[i]);
-        if (txt[i].size() <= 10) continue;
-        
-        txt[i] = txt[i][0] + to_string(txt[i].size() - 2) + txt[i][txt[i].size() - 1];
-        debugln(txt[i], txt[i].size());
-    }
+    string text;
+    input (text);
 
-    outputln(txt);
+    s.lexicographicallyLargestPalindromicSubsequence(text);
+
+    output(text);
 
     return 0;
 __note__:
