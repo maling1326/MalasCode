@@ -31,6 +31,7 @@ using ld         = long double;
 using str        = string;
 using strv       = string_view;
 using vi         = vector<int>;
+using vs         = vector<string>;
 using vll        = vector<ll>;
 using vvi        = vector<vi>;
 using vvll       = vector<vll>;
@@ -510,30 +511,42 @@ namespace {
 /*-----------------*/
 /* clang-format on */
 
+class Solution {
+public:
+    // Paste Function here
+};
+
 int main() {
     scope("Main");
+    Solution s;
 
 _m__dbg:
 #ifdef LOCAL_DBG
-    Redirect(R"(8)");
+    Redirect(R"()");
 #endif
 
 _m__main:
-    int a;
-    input (a);
-    
-    debugln(a);
-    if (a > 0 && a <= 2)
-        outputln("NO");
-    else if (a % 2 == 0)
-        outputln("YES");
-    else
-        outputln("NO");
+    vector<vector<int>> mat (10, vi(10, 1));
+    //                       ^  ^
+    //                     Row  Column
+
+    for (int i = 0; i < (mat.size()); ++i) {
+        scope ("Sekop");
+        for (int j = 0; j < (mat[i].size()); ++j) {
+            scope ("Di kokop");
+            mat[i][j] = i * j / 10;
+            debugln (mat[i][j]);
+        }
+    }
+
+    output("[", delim(mat, " ]\n[ "), "]");
+    debugln(mat);
 
     return 0;
 __note__:
     /**/
 }
+
 /*
 #######################################
 ||        Usefull tips or Memo         |

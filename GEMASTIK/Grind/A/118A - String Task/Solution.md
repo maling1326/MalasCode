@@ -36,10 +36,5 @@
 ## 💻 Code
 
 ```cpp []
-if (a > 0 && a <= 2)
-        outputln("NO");
-    else if (a % 2 == 0)
-        outputln("YES");
-    else
-        outputln("NO");
+// Paste Code Disini
 ```

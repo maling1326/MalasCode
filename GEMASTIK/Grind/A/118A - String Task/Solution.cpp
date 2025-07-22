@@ -31,6 +31,7 @@ using ld         = long double;
 using str        = string;
 using strv       = string_view;
 using vi         = vector<int>;
+using vs         = vector<string>;
 using vll        = vector<ll>;
 using vvi        = vector<vi>;
 using vvll       = vector<vll>;
@@ -510,30 +511,67 @@ namespace {
 /*-----------------*/
 /* clang-format on */
 
+class Solution {
+public:
+    void teststr(int much) {
+        scope("Test String");
+        vs t (much);
+        vs s (much);
+        for (int i = 0; i < (much); ++i) {
+            input (t[i]);
+            debugln("input", t[i]);
+            s[i] = onlyCons(t[i]);
+        }
+        
+        for (int i = 0; i < (much); ++i)
+            debugln("Answer", i, t[i], s[i]);
+    }
+
+    str onlyCons(str t) {
+        scope("Only Cons");
+        int maxs = t.size();
+
+        transform(t.begin(), t.end(), t.begin(),
+                   [](unsigned char c){ return std::tolower(c); });
+
+        for (int i = 0; i < (maxs); ++i) {
+            scope("For loops");
+            debugln(i, t[i], t);
+            if (t[i] != 'a' && t[i] != 'i' && 
+                t[i] != 'u' && t[i] != 'e' && 
+                t[i] != 'o' && t[i] != 'y') {
+                    t += '.';
+                    t += t[i];
+                }
+        }
+
+        t.erase(t.begin(), t.begin() + maxs);
+        debugln("Answer is", t);
+        return t;
+    }
+};
+
 int main() {
     scope("Main");
+    Solution s;
 
 _m__dbg:
 #ifdef LOCAL_DBG
-    Redirect(R"(8)");
+    Redirect(R"(Tour#CodeForces#aBAcAba)");
+    s.teststr(2);
 #endif
 
 _m__main:
-    int a;
-    input (a);
-    
-    debugln(a);
-    if (a > 0 && a <= 2)
-        outputln("NO");
-    else if (a % 2 == 0)
-        outputln("YES");
-    else
-        outputln("NO");
+    str text;
+    input (text);
+
+    outputln(s.onlyCons(text));
 
     return 0;
 __note__:
     /**/
 }
+
 /*
 #######################################
 ||        Usefull tips or Memo         |
