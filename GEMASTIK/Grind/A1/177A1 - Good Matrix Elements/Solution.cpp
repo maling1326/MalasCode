@@ -71,7 +71,26 @@ struct Writer { public: template <typename... Args> static void write(const Args
 
 class Solution {
 public:
-    // Paste Function here
+    int sumOfGoodMatrixes(int m) {
+        scope("sumOfGoodMatrixes Function");
+        int s {0}, temp{0}, mi;
+        mi = m/2;
+        debug(s, temp, mi);
+        // for (int i = 0; i < (m); ++i) {
+        //     for (int j = 0; j < (m); ++j) {
+        //         input(temp);
+        //         if      (i == mi || j == mi) s += temp; // Horizontal and Vertical
+        //         else if (j == m - i - 1)     s += temp; // Diagonal Kanan atas ke Kiri  Bawah
+        //         else if (j == i)             s += temp; // Diagonal Kiri  atas ke Kanan Bawah
+        //         debug(s, temp);
+        //     }
+        // }
+        rep(i, m * m) {
+            
+        }
+        debug("Return", s);
+        return s;
+    }
 };
 
 int main() {
@@ -81,11 +100,19 @@ int main() {
 #pragma input
 
     Redirect(R"(
-        10
+    5
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
     )");
 
 #pragma main
-    outputln ("Hello World");
+    int m;
+    input (m);
+
+    outputln (s.sumOfGoodMatrixes(m));
 
     return 0;
 }
