@@ -76,17 +76,14 @@ public:
         int s {0}, temp{0}, mi;
         mi = m/2;
         debug(s, temp, mi);
-        // for (int i = 0; i < (m); ++i) {
-        //     for (int j = 0; j < (m); ++j) {
-        //         input(temp);
-        //         if      (i == mi || j == mi) s += temp; // Horizontal and Vertical
-        //         else if (j == m - i - 1)     s += temp; // Diagonal Kanan atas ke Kiri  Bawah
-        //         else if (j == i)             s += temp; // Diagonal Kiri  atas ke Kanan Bawah
-        //         debug(s, temp);
-        //     }
-        // }
-        rep(i, m * m) {
-            
+        for (int i = 0; i < (m); ++i) {
+            for (int j = 0; j < (m); ++j) {
+                input(temp);
+                if      (i == mi || j == mi) s += temp; // Horizontal and Vertical
+                else if (j == m - i - 1)     s += temp; // Diagonal Kanan atas ke Kiri  Bawah
+                else if (j == i)             s += temp; // Diagonal Kiri  atas ke Kanan Bawah
+                debug(s, temp);
+            }
         }
         debug("Return", s);
         return s;
