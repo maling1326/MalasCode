@@ -71,7 +71,19 @@ struct Writer { public: template <typename... Args> static void write(const Args
 
 class Solution {
 public:
-    // Paste Function here
+    string convertToTitle(int x) {
+        string ans = "";
+
+        while (x) {
+            ans += --x % 26 + 'A';
+            x /= 26;
+
+        }
+
+        reverse(all(ans));
+
+        return ans;
+    }
 };
 
 int main() {
@@ -80,10 +92,15 @@ int main() {
 
 #pragma input
 
-    Redirect(R"()");
+    Redirect(R"(28)");
 
 #pragma main
-    outputln ("Hello World");
+    int x;
+    input (x);
+
+    string ans = s.convertToTitle(x);
+    debug(ans, x);
+    outputln(ans);
 
     return 0;
 }

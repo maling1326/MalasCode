@@ -71,7 +71,17 @@ struct Writer { public: template <typename... Args> static void write(const Args
 
 class Solution {
 public:
-    // Paste Function here
+    int titleToNumber(string x) {
+        scope("Function");
+        int ans {0};
+        debug("Start  ", x, ans);
+        for (int i = x.length() - 1; i >= 0; --i) {
+            ans += (x[i] - 'A' + 1) * pow(26, x.length() - 1 - i);
+            debug("Iterasi", x, ans);
+        }
+        debug("Result ", ans, x);
+        return ans;
+    }
 };
 
 int main() {
@@ -80,10 +90,15 @@ int main() {
 
 #pragma input
 
-    Redirect(R"()");
+    Redirect(R"(AB)");
 
 #pragma main
-    outputln ("Hello World");
+    string x;
+    input(x);
+
+    int ans = s.titleToNumber(x);
+    debug (x, ans);
+    outputln (ans);
 
     return 0;
 }
