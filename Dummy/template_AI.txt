@@ -1,6 +1,8 @@
-berdasarkan code yang disediakan dibawah, lengkapi struktur markdown yang sudah di sediakan di atas code nya, dan lalu untuk bagian judul time complexity dan space complexity, diganti kedua Big-O nya
+berdasarkan code yang disediakan dibawah, lengkapi struktur markdown yang sudah di sediakan di atas code nya, dan lalu untuk bagian judul time complexity dan space complexity, diganti kedua Big-O nya. isi markdown harus mengenai code yang disediakan dibawah, jangan terpaku oleh jawaban dari internet.
 
-dan lengkapi bagian soal dengan soal yang akan saya Paste dibawah, dan singkat soalnya supaya hanya inti nya saja yang ditulis
+dan lengkapi bagian soal dengan soal yang akan saya Paste dibawah, dan singkat soalnya supaya hanya inti nya saja yang ditulis.
+
+untuk cara kerja nya jelaskan step by step bagaimana code dibawah bekerja.
 
 <!--PASTE SOAL DISINI-->
 
