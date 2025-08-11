@@ -69,6 +69,57 @@ struct Writer { public: template <typename... Args> static void write(const Args
 /*-----------------*/
 /* clang-format on */
 
+vector<int> stringTointVector (string text) {
+    int begin = 0;
+    vector<int> result;
+    for (int i = 0; i < text.size(); i++) {
+        if (text[i] == ',' || text[i] == ' ') {
+            if (i > begin)
+                result.push_back(stoi(text.substr(begin, i - begin)));
+            begin = i + 1;  // move begin to the character after the delimiter
+        }
+        if (i == text.size() - 1) {
+            if (i >= begin)
+                result.push_back(stoi(text.substr(begin, i - begin + 1)));
+        }
+    }
+    return result;
+}
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        scope("Function");
+        nums.erase(remove(all(nums), val), nums.end());
+        return nums.size();
+    }
+};
+
+int main() {
+    scope("Main");
+    Solution s;
+
+#pragma input
+
+    Redirect(R"(3,2,2,3#3)");
+
+#pragma main
+    string txt;
+    input(txt);
+
+    int val;
+    input(val);
+
+    vi num = stringTointVector(txt);
+    debug(txt, num, val);
+    
+    int ans = s.removeElement(num, val);
+    
+    debug(txt, num, val, ans);
+
+    return 0;
+}
+
 /*
 #######################################
 ||        Usefull tips or Memo         |
@@ -108,22 +159,3 @@ how to use 2D vector array?
 ||        End of Tips or Memo          |
 #######################################
 */
-
-class Solution {
-public:
-    // Paste Function here
-};
-
-int main() {
-    scope("Main");
-    Solution s;
-
-#pragma input
-
-    Redirect(R"()");
-
-#pragma main
-    outputln ("Hello World");
-
-    return 0;
-}

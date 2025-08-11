@@ -73,7 +73,9 @@ class Solution {
 public:
     bool LuckyNumber(int x) {
         bool lucky = false;
-        if (x % 4 == 0 || x % 7 == 0) 
+        if (x % 4 == 0 || x % 7 == 0 || 
+            x % 4 + x % 7 == 4 ||
+            x % 4 + x % 7 == 7) 
             return true;
         
         while (x != 0) {
@@ -97,7 +99,7 @@ int main() {
 
 #pragma input
 
-    Redirect(R"(799)");
+    Redirect(R"(744)");
 
 #pragma main
     int x;

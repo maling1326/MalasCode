@@ -69,6 +69,98 @@ struct Writer { public: template <typename... Args> static void write(const Args
 /*-----------------*/
 /* clang-format on */
 
+vector<int> stringTointVector (string text) {
+    int begin = 0;
+    vector<int> result;
+    for (int i = 0; i < text.size(); i++) {
+        if (text[i] == ',' || text[i] == ' ') {
+            if (i > begin)
+                result.push_back(stoi(text.substr(begin, i - begin)));
+            begin = i + 1;  // move begin to the character after the delimiter
+        }
+        if (i == text.size() - 1) {
+            if (i >= begin)
+                result.push_back(stoi(text.substr(begin, i - begin + 1)));
+        }
+    }
+    return result;
+}
+
+
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        /* 
+        0 1 2 3 4
+        2 3 1 1 4
+              ^ ^   (3 + 1) - 4 = 0 >= 0 ? OK
+            ^ ^     (2 + 1) - 3 = 0 >= 0 ? OK
+          ^ ^       (1 + 3) - 2 = 2 >= 0 ? OK
+        ^ ^         (0 + 2) - 1 = 1 >= 0 ? OK
+        J == 0 ? YES
+
+        0 1 2 3 4
+        2 3 1 0 4
+              ^ ^   (3 + 0) - 4 = -1 >= 0 ? NOPE
+            ^   ^   (2 + 1) - 4 = -1 >= 0 ? NOPE
+          ^     ^   (1 + 3) - 4 = 0  >= 0 ? OK
+        ^ ^         (0 + 2) - 1 = 1  >= 0 ? OK
+        J == 0 ? YES
+
+        0 1 2 3 4
+        3 2 1 0 4
+              ^ ^   (3 + 0) - 4 = -1 >= 0 ? NOPE
+            ^   ^   (2 + 1) - 4 = -1 >= 0 ? NOPE
+          ^     ^   (1 + 2) - 4 = -1 >= 0 ? NOPE
+        ^       ^   (0 + 3) - 1 = -1 >= 0 ? NOPE
+        J == 0 ? NOPE : J = 4
+
+        0 1 2 3 4 5 6 7
+        4 0 0 0 3 0 0 1
+                    ^ ^ (6 + 0) - 7 = -1 >= 0 ? NOPE
+                  ^   ^ (5 + 0) - 7 = -2 >= 0 ? NOPE
+                ^     ^ (4 + 3) - 7 = 0  >= 0 ? YES
+              ^ ^       (3 + 0) - 4 = -1 >= 0 ? NOPE
+            ^   ^       (2 + 0) - 4 = -2 >= 0 ? NOPE
+          ^     ^       (1 + 0) - 4 = -3 >= 0 ? NOPE
+        ^       ^       (0 + 4) - 4 = 0  >= 0 ? YES
+        J == 0 ? YES
+        */
+       scope("Function");
+       debug(nums.size(), nums);
+
+       for(int i = nums.size() - 1, j = i; i >= 0; --i) {
+            scope("For Loops");
+            debug(i, nums[i], j);
+            if ((i + nums[i]) - j >= 0)
+                j = i;
+            if (j == 0) return true;
+        }
+        return false;
+    }
+};
+
+int main() {
+    scope("Main");
+    Solution s;
+
+#pragma input
+
+    Redirect(R"(1 0)");
+
+#pragma main
+    string text; input(text);
+    vi num = stringTointVector(text);
+
+
+    switch(s.canJump(num)) {
+        case true:  outputln("YES"); break;
+        case false: outputln("NO");  break;
+    }
+
+    return 0;
+}
+
 /*
 #######################################
 ||        Usefull tips or Memo         |
@@ -108,22 +200,3 @@ how to use 2D vector array?
 ||        End of Tips or Memo          |
 #######################################
 */
-
-class Solution {
-public:
-    // Paste Function here
-};
-
-int main() {
-    scope("Main");
-    Solution s;
-
-#pragma input
-
-    Redirect(R"()");
-
-#pragma main
-    outputln ("Hello World");
-
-    return 0;
-}
