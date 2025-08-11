@@ -1,0 +1,43 @@
+berdasarkan code yang disediakan dibawah, lengkapi struktur markdown yang sudah di sediakan di atas code nya, dan lalu untuk bagian judul time complexity dan space complexity, diganti kedua Big-O nya. isi markdown harus mengenai code yang disediakan dibawah, jangan terpaku oleh jawaban dari internet.
+
+dan lengkapi bagian soal dengan soal yang akan saya Paste dibawah, dan singkat soalnya supaya hanya inti nya saja yang ditulis.
+
+untuk cara kerja nya jelaskan step by step bagaimana code dibawah bekerja.
+
+JANGAN PAKAI KODE ORANG LAIN, GUNAKAN KODE YANG SUDAH DISEDIAKAN DIBAWAH SOLUTION.MD
+
+58. Length of Last Word
+Solved
+Easy
+Topics
+premium lock iconCompanies
+
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+A word is a maximal
+
+consisting of non-space characters only.
+
+ 
+
+Example 1:
+
+Input: s = "Hello World"
+Output: 5
+Explanation: The last word is "World" with length 5.
+
+Example 2:
+
+Input: s = "   fly me   to   the moon  "
+Output: 4
+Explanation: The last word is "moon" with length 4.
+
+Example 3:
+
+Input: s = "luffy is still joyboy"
+Output: 6
+Explanation: The last word is "joyboy" with length 6.
+
+Link soal tsb
+
+https://leetcode.com/problems/length-of-last-word/submissions/1731342031/

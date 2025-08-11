@@ -4,6 +4,8 @@ dan lengkapi bagian soal dengan soal yang akan saya Paste dibawah, dan singkat s
 
 untuk cara kerja nya jelaskan step by step bagaimana code dibawah bekerja.
 
+JANGAN PAKAI KODE ORANG LAIN, GUNAKAN KODE YANG SUDAH DISEDIAKAN DIBAWAH SOLUTION.MD
+
 <!--PASTE SOAL DISINI-->
 
 Link soal tsb
