@@ -1,4 +1,4 @@
-# LeetCode Solutions My Try
+# LeetCode Solutions My Attempts
 
 Kumpulan solusi problem LeetCode yang sudah saya submit, dibuat untuk dokumentasi dan referensi belajar.
 
