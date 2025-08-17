@@ -1,0 +1,24 @@
+berdasarkan code yang disediakan dibawah, lengkapi struktur markdown yang sudah di sediakan di atas code nya, dan lalu untuk bagian judul time complexity dan space complexity, diganti kedua Big-O nya. isi markdown harus mengenai code yang disediakan dibawah, jangan terpaku oleh jawaban dari internet.
+
+dan lengkapi bagian soal dengan soal yang akan saya Paste dibawah, dan singkat soalnya supaya hanya inti nya saja yang ditulis.
+
+untuk cara kerja nya jelaskan step by step bagaimana code dibawah bekerja.
+
+JANGAN PAKAI KODE ORANG LAIN, GUNAKAN KODE YANG SUDAH DISEDIAKAN DIBAWAH SOLUTION.MD
+
+869. Reordered Power of 2
+
+Here is a brief explanation of the question:
+
+The problem is asking whether its possible to rearrange the digits of a given number in such a way that the resulting number (without any leading zeros) becomes a power of two. If this rearrangement is possible then function should return true; otherwise it should return false;
+
+For example:
+
+    If n is 46 you can rearrange the digits to form 64 which is a power of two Therefore the function should return true;
+
+    If n is 65 it's not possible to rearrange the digits of n to form any number that is a power of two Therefore the function should return false;
+
+
+Link soal tsb
+
+https://leetcode.com/problems/reordered-power-of-2/description/?envType=daily-question&envId=2025-08-16
