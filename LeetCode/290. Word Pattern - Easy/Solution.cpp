@@ -115,40 +115,83 @@ class Solution {
 public:
     bool wordPattern(string patt, string s) {
         scope("Function");
-        unordered_map<int, int> pat {};
-        unordered_map<int, int> str {};
-        int temp {0}, i, j;
-        
-        for(i = 0, j = 0; i < s.size(); ++i) {
-            debug(i, j, s[i], patt[j], temp, pat, str);
-            if (s[i] == ' ') {
-                debug(pat[(int) patt[j]] != temp && str[temp] != patt[j]);
-                if (!pat[(int) patt[j]] && !str[temp]) {
-                    pat[(int) patt[j]] = temp;
-                    str[temp] = (int) patt[j];
+        unordered_map<char, string>  pat {};
+        unordered_map<string, char>  str {};
+        int j = 0;
+        debug("start", patt, s, patt.size());
+        rep(i, s.size()) {
+            if (isspace(s[i])) {
+                string substr = s.substr(0, i); 
+                s.erase(s.begin(), s.begin() + i + 1);
+                i = -1;
+                debug(patt, s, substr, i);
+                if (pat[patt[j]].empty() and !str[substr]) {
+                    pat[patt[j]] = substr;
+                    str[substr] = patt[j];
+                    debug("MAKE1", j, pat, str);
                 }
-                else if (pat[(int) patt[j]] != temp && str[temp] != patt[j]) {
-                    // debug("Salah", patt, s, pat, str);
+                else if (pat[patt[j]] != substr and str[substr] != patt[j]) {
+                    debug("FALSE1", pat[patt[j]], str[substr], substr);
                     return false;
                 }
                 ++j;
-                temp = 0;
-                continue;
             }
-            temp += (int)s[i];
+            else if (i + 1 == s.size()) {
+                if (pat[patt[j]].empty() and !str[s]) {
+                    pat[patt[j]] = s;
+                    str[s] = patt[j];
+                    debug("MAKE2", j, pat, str);
+                }
+                else if (pat[patt[j]] != s and str[s] != patt[j]) {
+                    debug("FALSE2", pat[patt[j]], str[s], s);
+                    return false;
+                }
+                s.erase();
+                ++j;
+                debug("DONE");
+            }
         }
-
-        if (!pat[(int) patt[j]] && !str[temp] && j + 1 == patt.size()) {
-            pat[(int) patt[j]] = temp;
-            str[temp] = (int) patt[j];
-        }
-        else if (pat[(int) patt[j]] != temp && str[temp] != patt[j] || j + 1 < patt.size()) {
-            // debug("Salah", patt, s, temp, pat[(int) patt[j]], str);
+        debug(s, patt, j);
+        if (!s.empty() or j != patt.size())
             return false;
-        }
-        
-        // debug("Benar", patt, s, temp, pat, str);
+
         return true;
+
+        // scope("Function");
+        // unordered_map<int, int> pat {};
+        // unordered_map<int, int> str {};
+        // int temp {0}, i, j;
+        
+        // for(i = 0, j = 0; i < s.size(); ++i) {
+        //     debug(i, j, s[i], patt[j], temp, pat, str);
+        //     if (s[i] == ' ') {
+        //         debug(pat[(int) patt[j]] != temp && str[temp] != patt[j]);
+        //         if (!pat[(int) patt[j]] && !str[temp]) {
+        //             pat[(int) patt[j]] = temp;
+        //             str[temp] = (int) patt[j];
+        //         }
+        //         else if (pat[(int) patt[j]] != temp && str[temp] != patt[j]) {
+        //             // debug("Salah", patt, s, pat, str);
+        //             return false;
+        //         }
+        //         ++j;
+        //         temp = 0;
+        //         continue;
+        //     }
+        //     temp += (int)s[i];
+        // }
+
+        // if (!pat[(int) patt[j]] && !str[temp] && j + 1 == patt.size()) {
+        //     pat[(int) patt[j]] = temp;
+        //     str[temp] = (int) patt[j];
+        // }
+        // else if (pat[(int) patt[j]] != temp && str[temp] != patt[j] || j + 1 < patt.size()) {
+        //     // debug("Salah", patt, s, temp, pat[(int) patt[j]], str);
+        //     return false;
+        // }
+        
+        // // debug("Benar", patt, s, temp, pat, str);
+        // return true;
 
 
 
@@ -213,7 +256,9 @@ int main() {
     // Redirect(R"(abba#dog cat cat dog#)");
     // Redirect(R"(aaaa#dog cat cat dog#)");
     // Redirect(R"(jquery#jquery#)");
-    Redirect(R"(hut#unit test harpoon#)");
+    // Redirect(R"(hut#unit test harpoon#)");
+    // Redirect(R"(abc#b c a#)");
+    Redirect(R"(abbac#dog cat tac dog#)");
 
 #pragma main
     string patt;
