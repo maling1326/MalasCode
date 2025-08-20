@@ -114,9 +114,46 @@ how to use 2D vector array?
 #######################################
 */
 
+vvc stringTo2Dvvc (const std::string& text) {
+    vvc ans;
+    int i     = -1,
+        begin =  0;
+    for (int k = 1; k < (int)text.size() - 1; ++k) {
+        if (text[k] == '[') {
+            ans.push_back(vc()); // start new row
+            ++i; begin = k + 1;
+        }
+        else if (text[k] == ',' || text[k] == ']') {
+            for (int idx = begin; idx < k; ++idx) {
+                if (text[idx] != ' ') ans[i].push_back(text[idx]); // Skip spaces
+            }
+            begin = k + 1;
+        }
+    }
+    return ans;
+}
+
 class Solution {
 public:
-    // Paste Function here
+    int maximalSquare(vector<vector<char>>& matrix) {
+        if (matrix.empty()) return 0;
+
+        int m  = matrix.size(), 
+            n  = matrix[0].size(), 
+            sz = 0;
+        vvi dp (m, vi(n, 0));
+
+        rep(i, m) {
+            rep(j, n) {
+                if ( !i || !j || matrix[i][j] == '0') 
+                    dp[i][j] = matrix[i][j] - '0';
+                else 
+                    dp[i][j] = min( dp[ i - 1 ][ j - 1 ], min(dp[ i - 1 ][ j ], dp[ i ][ j - 1 ])) + 1;
+                sz = max(dp[i][j], sz);
+            }
+        }
+        return sz * sz;
+    }
 };
 
 int main() {
@@ -125,10 +162,18 @@ int main() {
 
 #pragma input
 
-    Redirect(R"()");
+    Redirect(R"([[1,0,1,0,0],[1,0,1,1,1],[1,1,1,1,1],[1,0,0,1,0]])");
 
 #pragma main
-    outputln ("Hello World");
+    string txt;
+    input(txt);
+
+    vvc ch = stringTo2Dvvc(txt);
+
+    int ans = s.maximalSquare(ch);
+    debug(ch);
+    debug(ans, ch, txt);
+    outputln(ans);
 
     return 0;
 }
