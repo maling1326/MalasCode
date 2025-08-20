@@ -1,0 +1,52 @@
+berdasarkan code yang disediakan dibawah, lengkapi struktur markdown yang sudah di sediakan di atas code nya, dan lalu untuk bagian judul time complexity dan space complexity, diganti kedua Big-O nya. isi markdown harus mengenai code yang disediakan dibawah, jangan terpaku oleh jawaban dari internet.
+
+dan lengkapi bagian soal dengan soal yang akan saya Paste dibawah, dan singkat soalnya supaya hanya inti nya saja yang ditulis.
+
+untuk cara kerja nya jelaskan step by step bagaimana code dibawah bekerja.
+
+JANGAN PAKAI KODE ORANG LAIN, GUNAKAN KODE YANG SUDAH DISEDIAKAN DIBAWAH SOLUTION.MD
+
+1277. Count Square Submatrices with All Ones
+Solved
+Medium
+Topics
+premium lock iconCompanies
+Hint
+
+Given a m * n matrix of ones and zeros, return how many square submatrices have all ones.
+
+ 
+
+Example 1:
+
+Input: matrix =
+[
+  [0,1,1,1],
+  [1,1,1,1],
+  [0,1,1,1]
+]
+Output: 15
+Explanation: 
+There are 10 squares of side 1.
+There are 4 squares of side 2.
+There is  1 square of side 3.
+Total number of squares = 10 + 4 + 1 = 15.
+
+Example 2:
+
+Input: matrix = 
+[
+  [1,0,1],
+  [1,1,0],
+  [1,1,0]
+]
+Output: 7
+Explanation: 
+There are 6 squares of side 1.  
+There is 1 square of side 2. 
+Total number of squares = 6 + 1 = 7.
+
+
+Link soal tsb
+
+https://leetcode.com/problems/count-square-submatrices-with-all-ones/submissions/1742259436/?envType=daily-question&envId=2025-08-20
