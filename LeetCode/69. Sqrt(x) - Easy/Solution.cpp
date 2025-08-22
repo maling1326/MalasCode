@@ -116,7 +116,12 @@ how to use 2D vector array?
 
 class Solution {
 public:
-    // Paste Function here
+    int mySqrt(int x) {
+        int ans {0};
+        while(ans * ans < x) 
+            ans++;
+        return ans - 1;
+    }
 };
 
 int main() {
@@ -125,10 +130,14 @@ int main() {
 
 #pragma input
 
-    Redirect(R"()");
+    Redirect(R"(8)");
 
 #pragma main
-    outputln ("Hello World");
+    int num = (input(num), num);
+    
+    int ans = s.mySqrt(num);
+    debug(num, ans);
+    output(ans);
 
     return 0;
 }
