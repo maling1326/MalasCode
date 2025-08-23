@@ -72,62 +72,6 @@ struct Writer { public: template <typename... Args> static void write(const Args
 /*-----------------*/
 /* clang-format on */
 
-// vvi stringTo2Dvvi (const std::string& text) {
-//     vvi ans;
-//     int i = -1; // row index
-//     int begin = 0;
-
-//     for (int k = 1; k < (int)text.size(); ++k) {
-//         if (text[k] == '[') {
-//             ans.push_back(vi()); // start new row
-//             ++i;
-//             begin = k + 1;
-//         }
-//         else if (text[k] == ',' || text[k] == ']') {
-//             if (begin < k) { // something to convert
-//                 std::string numStr = text.substr(begin, k - begin);
-//                 // Trim spaces from numStr
-//                 int start = 0;
-//                 int end = (int)numStr.size() - 1;
-//                 while (start <= end && numStr[start] == ' ') ++start;
-//                 while (end >= start && numStr[end] == ' ') --end;
-//                 if (start <= end) {
-//                     int num = std::stoi(numStr.substr(start, end - start + 1));
-//                     ans[i].push_back(num);
-//                 }
-//             }
-//             begin = k + 1;
-//         }
-//     }
-//     return ans;
-// }
-
-// vvs stringTo2Dvvs (const std::string& text) {
-//     vvs ans;
-//     int i = -1; // row index
-//     int begin = 0;
-
-//     for (int k = 1; k < (int)text.size() - 1; ++k) {
-//         if (text[k] == '[') {
-//             ans.push_back(vs()); // start new row
-//             ++i;
-//             begin = k + 1;
-//         }
-//         else if (text[k] == ',' || text[k] == ']') {
-//             std::string substr = text.substr(begin, k - begin);
-//             // trim spaces
-//             int start = 0, end = (int)substr.size() - 1;
-//             while (start <= end && substr[start] == ' ') ++start;
-//             while (end >= start && substr[end] == ' ') --end;
-//             if (start <= end) {
-//                 ans[i].push_back(substr.substr(start, end - start + 1));
-//             }
-//             begin = k + 1;
-//         }
-//     }
-//     return ans;
-// }
-
 /*
 #######################################
 ||        Usefull tips or Memo         |
@@ -170,10 +114,53 @@ how to use 2D vector array?
 #######################################
 */
 
+vvc stringTo2Dvvc   (const std::string& text) {
+    vvc ans;
+    int i     = -1,
+        begin =  0;
+    for (int k = 1; k < (int)text.size() - 1; ++k) {
+        if (text[k] == '[') {
+            ans.push_back(vc()); // start new row
+            ++i; begin = k + 1;
+        }
+        else if (text[k] == ',' || text[k] == ']') {
+            for (int idx = begin; idx < k; ++idx) {
+                if (text[idx] != ' ') ans[i].push_back(text[idx]); // Skip spaces
+            }
+            begin = k + 1;
+        }
+    }
+    return ans;
+}
+
 class Solution {
 public:
-    // Paste Function here
+    bool isValidSudoku(vector<vector<char>>& board) {
+        vvi col (9, vi(9, 0)),
+            row (9, vi(9, 0)),
+            box (9, vi(9, 0));
+
+        debug(board, col, row, box, board[0][0]);
+        rep(i, 9) {
+            rep(j, 9) {
+                if (board[i][j] != '.') {
+                    int now = board[i][j] - '1',
+                        cor = ((i / 3) * 3) + (j / 3);
+                    debug(board[i][j], now, cor, col[j][now], row[i][now], box[cor][now]);
+                    if (col[j][now] == 1 or row[i][now] == 1 or box[cor][now] == 1)
+                        return false;
+                    col[j][now]++;
+                    row[i][now]++;
+                    box[cor][now]++;
+                }
+            }
+        }
+        debug(col, row, box);
+        return true;
+    }
 };
+
+
 
 int main() {
     scope("Main");
@@ -181,10 +168,19 @@ int main() {
 
 #pragma input
 
-    Redirect(R"()");
+    Redirect(R"([[5,3,.,.,7,.,.,.,.],[6,.,.,1,9,5,.,.,.],[.,9,8,.,.,.,.,6,.],[8,.,.,.,6,.,.,.,3],[4,.,.,8,.,3,.,.,1],[7,.,.,.,2,.,.,.,6],[.,6,.,.,.,.,2,8,.],[.,.,.,4,1,9,.,.,5],[.,.,.,.,8,.,.,7,9]]#)");
 
 #pragma main
-    outputln ("Hello World");
+    string txt;
+    input(txt);
+
+    vvc num = stringTo2Dvvc(txt);
+    debug(txt, num);
+
+    switch (s.isValidSudoku(num)) {
+        case true : outputln("true");  break;
+        case false: outputln("false"); break;
+    }
 
     return 0;
 }
