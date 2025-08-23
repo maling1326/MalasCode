@@ -58,7 +58,7 @@ Inti dari kode ini adalah menggunakan array 2D untuk mencatat apakah angka terte
    [ . . . . 8 . . 7 9 ]
   ```
 
-  Output: `false` (karena ada dua angka 8 di kotak kiri atas)
+  Output: `false` (karena ada dua angka 8 di kolom pertama)
 
 ## 📊 Complexity
 
