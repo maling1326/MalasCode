@@ -191,23 +191,24 @@ vector<int> stringTointVector (string text) {
 class Solution {
 public:
     int longestSubarray(vector<int>& nums) {
-        int maxx {0}, del {0}, z {1};
-        debug("START", nums);
-        for(int i = 0, l = 0, r = 0; i < nums.size(); ++i) {
+        int maxx {0}, del{0}, l {0}, r {0};
+        debug("START");
+        debug("->", nums);
+        for(int i = 0; i < nums.size(); ++i) {
             if (nums[i] == 0 && (l != 0 or r != 0)) {
                 maxx = max(maxx, l + r);
                 l = r;
                 r = 0;
                 del++;
             }
-            else if (nums[i] == 1) r++;
+            else if (nums[i] == 1) 
+                r++;
+
             if (r > 0) maxx = max(maxx, l + r);
-            if (nums[i] == 0) z++;
-            debug(maxx, i, l, r, z, nums[i], del);
+            debug(nums[i], i, l, r, del, maxx);
         }
-        debug("END");
-        if (z == nums.size()) return 0;
-        return (del == 0) ? nums.size() - 1 : maxx;
+        if (del == 0 and maxx == 0) return 0;
+        return (del == 0 and r == nums.size()) ? nums.size() - 1 : maxx;
     }
 };
 
@@ -217,7 +218,7 @@ int main() {
 
 #pragma input
 
-    Redirect(R"(1,1,0,1#0,1,1,1,0,1,1,0,1#1,1,1#0,0,0#)");
+    Redirect(R"(1,1,0,1#0,1,1,1,0,1,1,0,1#1,1,1#0,0,0#0,0,1,1#)");
 
 #pragma main
     string text;
@@ -227,7 +228,7 @@ int main() {
     input(text);
     num = stringTointVector(text);
     ans = s.longestSubarray(num);
-    debug(text, num, ans);
+    // debug(text, num, ans);
     outputln(ans);
     
     /*
@@ -235,19 +236,25 @@ int main() {
     input(text);
     num = stringTointVector(text);
     ans = s.longestSubarray(num);
-    debug(text, num, ans);
+    // debug(text, num, ans);
     outputln(ans);
 
     input(text);
     num = stringTointVector(text);
     ans = s.longestSubarray(num);
-    debug(text, num, ans);
+    // debug(text, num, ans);
     outputln(ans);
 
     input(text);
     num = stringTointVector(text);
     ans = s.longestSubarray(num);
-    debug(text, num, ans);
+    // debug(text, num, ans);
+    outputln(ans);
+
+    input(text);
+    num = stringTointVector(text);
+    ans = s.longestSubarray(num);
+    // debug(text, num, ans);
     outputln(ans);
 
     return 0;
