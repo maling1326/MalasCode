@@ -1,3 +1,4 @@
+#include <bits/stdc++.h>
 #include <iostream>
 #include <chrono>
 #include "../etc/debug.h"
@@ -91,7 +92,6 @@ public:
             else if (s[i] == 'I')                   // I
                 sum += 1;
         }
-
         return sum;
     }
 };
