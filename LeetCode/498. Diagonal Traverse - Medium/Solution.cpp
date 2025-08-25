@@ -72,35 +72,35 @@ struct Writer { public: template <typename... Args> static void write(const Args
 /*-----------------*/
 /* clang-format on */
 
-// vvi stringTo2Dvvi (const std::string& text) {
-//     vvi ans;
-//     int i = -1; // row index
-//     int begin = 0;
+vvi stringTo2Dvvi (const std::string& text) {
+    vvi ans;
+    int i = -1; // row index
+    int begin = 0;
 
-//     for (int k = 1; k < (int)text.size(); ++k) {
-//         if (text[k] == '[') {
-//             ans.push_back(vi()); // start new row
-//             ++i;
-//             begin = k + 1;
-//         }
-//         else if (text[k] == ',' || text[k] == ']') {
-//             if (begin < k) { // something to convert
-//                 std::string numStr = text.substr(begin, k - begin);
-//                 // Trim spaces from numStr
-//                 int start = 0;
-//                 int end = (int)numStr.size() - 1;
-//                 while (start <= end && numStr[start] == ' ') ++start;
-//                 while (end >= start && numStr[end] == ' ') --end;
-//                 if (start <= end) {
-//                     int num = std::stoi(numStr.substr(start, end - start + 1));
-//                     ans[i].push_back(num);
-//                 }
-//             }
-//             begin = k + 1;
-//         }
-//     }
-//     return ans;
-// }
+    for (int k = 1; k < (int)text.size(); ++k) {
+        if (text[k] == '[') {
+            ans.push_back(vi()); // start new row
+            ++i;
+            begin = k + 1;
+        }
+        else if (text[k] == ',' || text[k] == ']') {
+            if (begin < k) { // something to convert
+                std::string numStr = text.substr(begin, k - begin);
+                // Trim spaces from numStr
+                int start = 0;
+                int end = (int)numStr.size() - 1;
+                while (start <= end && numStr[start] == ' ') ++start;
+                while (end >= start && numStr[end] == ' ') --end;
+                if (start <= end) {
+                    int num = std::stoi(numStr.substr(start, end - start + 1));
+                    ans[i].push_back(num);
+                }
+            }
+            begin = k + 1;
+        }
+    }
+    return ans;
+}
 
 // vvs stringTo2Dvvs (const std::string& text) {
 //     vvs ans;
@@ -170,43 +170,37 @@ how to use 2D vector array?
 #######################################
 */
 
-vector<int> stringTointVector (string text) {
-    int begin = 0;
-    vector<int> result;
-    for (int i = 0; i < text.size(); i++) {
-        if (text[i] == ',' || text[i] == ' ') {
-            if (i > begin)
-                result.push_back(stoi(text.substr(begin, i - begin)));
-            begin = i + 1;  // move begin to the character after the delimiter
-        }
-        if (i == text.size() - 1) {
-            if (i >= begin)
-                result.push_back(stoi(text.substr(begin, i - begin + 1)));
-        }
-    }
-    return result;
-}
-
 class Solution {
 public:
-    int longestConsecutive(vector<int>& nums) {
-        if (nums.empty()) return 0;
-        
-        int ans{0}, temp{1};
-        
-        sort(nums.begin(), nums.end());
-        nums.erase(unique(nums.begin(), nums.end()), nums.end());
-
-        for (int i = 1; i < ssize(nums); ++i) {
-            if (nums[i] - 1 == nums[i - 1])
-                temp++;
+    vector<int> findDiagonalOrder(vector<vector<int>>& mat) {
+        vector<int> arr;
+        bool isleft = false;
+        for (int i = 0, j = 0; i < size(mat) && j < size(mat[0]);) {
+            arr.emplace_back(mat[i][j]);
+            if (isleft) {
+                if (i + 1 == size(mat)) {
+                    isleft = false;
+                    j++;
+                }
+                else if (j - 1 == -1) {
+                    isleft = false;
+                    i++;
+                }
+                else {j--; i++;}
+            }
             else {
-                ans = max(ans, temp);
-                temp = 1;
+                if (j + 1 == size(mat[0])) {
+                    isleft = true;
+                    i++;
+                }
+                else if (i - 1 == -1) {
+                    isleft = true;
+                    j++;
+                }
+                else {i--; j++;}
             }
         }
-        ans = max(ans, temp);
-        return ans;
+        return arr;
     }
 };
 
@@ -216,41 +210,15 @@ int main() {
 
 #pragma input
 
-    Redirect(R"(100,4,200,1,3,2#0,3,7,2,5,8,4,6,0,1#1,0,1,2#0,-1#9,1,4,7,3,-1,0,5,8,-1,6#)");
+    Redirect(R"([[1,2,3],[4,5,6],[7,8,9]]#)");
 
 #pragma main
     string txt;
     input(txt);
-    
-    vi  num = stringTointVector(txt);
-    int ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
 
-    /*
-    */
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-    
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
+    vvi nums = stringTo2Dvvi(txt);
+    vi  ans  = s.findDiagonalOrder(nums);
+    debug(ans, nums, txt);
     outputln(ans);
 
     return 0;

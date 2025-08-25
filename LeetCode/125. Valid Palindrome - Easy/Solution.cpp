@@ -170,43 +170,13 @@ how to use 2D vector array?
 #######################################
 */
 
-vector<int> stringTointVector (string text) {
-    int begin = 0;
-    vector<int> result;
-    for (int i = 0; i < text.size(); i++) {
-        if (text[i] == ',' || text[i] == ' ') {
-            if (i > begin)
-                result.push_back(stoi(text.substr(begin, i - begin)));
-            begin = i + 1;  // move begin to the character after the delimiter
-        }
-        if (i == text.size() - 1) {
-            if (i >= begin)
-                result.push_back(stoi(text.substr(begin, i - begin + 1)));
-        }
-    }
-    return result;
-}
-
 class Solution {
 public:
-    int longestConsecutive(vector<int>& nums) {
-        if (nums.empty()) return 0;
-        
-        int ans{0}, temp{1};
-        
-        sort(nums.begin(), nums.end());
-        nums.erase(unique(nums.begin(), nums.end()), nums.end());
-
-        for (int i = 1; i < ssize(nums); ++i) {
-            if (nums[i] - 1 == nums[i - 1])
-                temp++;
-            else {
-                ans = max(ans, temp);
-                temp = 1;
-            }
-        }
-        ans = max(ans, temp);
-        return ans;
+    bool isPalindrome(string s) {
+        s.erase (remove_if (s.begin(), s.end(), [](char c){          return !isalnum(c); }), s.end());
+        transform(s.begin(), s.end(), s.begin(),[](unsigned char c){ return  tolower(c); });
+        reverse ( s.begin() + s.size() / 2, s.end()); 
+        return s.substr(0, s.size() / 2) == s.substr(s.size() / 2, s.size() / 2);
     }
 };
 
@@ -216,42 +186,17 @@ int main() {
 
 #pragma input
 
-    Redirect(R"(100,4,200,1,3,2#0,3,7,2,5,8,4,6,0,1#1,0,1,2#0,-1#9,1,4,7,3,-1,0,5,8,-1,6#)");
+    Redirect(R"(A man, a plan, a canal: Panama#)");
 
 #pragma main
     string txt;
     input(txt);
-    
-    vi  num = stringTointVector(txt);
-    int ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
 
-    /*
-    */
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-    
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
+    debug(txt);
+    switch(s.isPalindrome(txt)) {
+        case true : outputln("true");  break;
+        case false: outputln("false"); break;
+    }
 
     return 0;
 }

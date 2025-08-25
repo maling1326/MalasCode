@@ -170,43 +170,41 @@ how to use 2D vector array?
 #######################################
 */
 
-vector<int> stringTointVector (string text) {
-    int begin = 0;
-    vector<int> result;
-    for (int i = 0; i < text.size(); i++) {
-        if (text[i] == ',' || text[i] == ' ') {
-            if (i > begin)
-                result.push_back(stoi(text.substr(begin, i - begin)));
-            begin = i + 1;  // move begin to the character after the delimiter
-        }
-        if (i == text.size() - 1) {
-            if (i >= begin)
-                result.push_back(stoi(text.substr(begin, i - begin + 1)));
-        }
-    }
-    return result;
-}
-
 class Solution {
 public:
-    int longestConsecutive(vector<int>& nums) {
-        if (nums.empty()) return 0;
-        
-        int ans{0}, temp{1};
-        
-        sort(nums.begin(), nums.end());
-        nums.erase(unique(nums.begin(), nums.end()), nums.end());
+    void solve() {
+        ll a, b, round, l{0}, r{0};
+        input(a, b, round);
+        debug(a, b, round);
+        vi carda (a), cardb (b);
+        input(carda);
+        input(cardb);
+        sort(all(carda), greater<>());
+        sort(all(cardb), greater<>());
+        debug(carda, cardb);
 
-        for (int i = 1; i < ssize(nums); ++i) {
-            if (nums[i] - 1 == nums[i - 1])
-                temp++;
-            else {
-                ans = max(ans, temp);
-                temp = 1;
+        while(round--) {
+            l = r = 0;
+            ll x, y, z, sum{0};
+            input(x, y, z);
+
+            while(l + r < z) {
+                debug(l, r, sum);
+                if (l < carda.size() && carda[l] > cardb[r] && l < x) {
+                    sum += carda[l];
+                    debug(carda[l]);
+                    l++;
+                }
+                else if (cardb[r]) {
+                    sum += cardb[r];
+                    debug(cardb[r]);
+                    r++;
+                }
+                if (a + b == l + r) break;
             }
+            debug(x, y, z, sum);
+            outputln(sum);
         }
-        ans = max(ans, temp);
-        return ans;
     }
 };
 
@@ -216,42 +214,14 @@ int main() {
 
 #pragma input
 
-    Redirect(R"(100,4,200,1,3,2#0,3,7,2,5,8,4,6,0,1#1,0,1,2#0,-1#9,1,4,7,3,-1,0,5,8,-1,6#)");
+    Redirect(R"(4#3#4#5#10#20#30#1#2#3#4#0#0#0#3#4#7#3#4#4#1#4#4#2#2#4#5#5#2#500000000#300000000#100000000#900000000#700000000#800000000#400000000#1000000000#600000000#200000000#1#4#3#5#2#6#4#4#1#100#100#20#20#100#100#20#20#4#4#5#3#3#6#2#363#711#286#121#102#1#1#1#3#1#1#1#2#0#1#3#2#0#1#0#3#3#3)");
 
 #pragma main
-    string txt;
-    input(txt);
-    
-    vi  num = stringTointVector(txt);
-    int ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
+    int n;
+    input(n);
 
-    /*
-    */
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-    
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
+    while(n--)
+        s.solve();
 
     return 0;
 }

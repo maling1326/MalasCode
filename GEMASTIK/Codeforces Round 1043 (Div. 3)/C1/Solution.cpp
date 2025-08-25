@@ -170,88 +170,67 @@ how to use 2D vector array?
 #######################################
 */
 
-vector<int> stringTointVector (string text) {
-    int begin = 0;
-    vector<int> result;
-    for (int i = 0; i < text.size(); i++) {
-        if (text[i] == ',' || text[i] == ' ') {
-            if (i > begin)
-                result.push_back(stoi(text.substr(begin, i - begin)));
-            begin = i + 1;  // move begin to the character after the delimiter
-        }
-        if (i == text.size() - 1) {
-            if (i >= begin)
-                result.push_back(stoi(text.substr(begin, i - begin + 1)));
-        }
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+// Pre-compute powers of 3 to avoid using std::pow and floating-point issues
+// Maximum x for n=10^9 is around 19, so 25 is safe.
+std::vector<long long> powers_of_3(25);
+
+void precompute_powers() {
+    powers_of_3[0] = 1;
+    for (int i = 1; i < 25; ++i) {
+        powers_of_3[i] = powers_of_3[i - 1] * 3;
     }
-    return result;
 }
 
-class Solution {
-public:
-    int longestConsecutive(vector<int>& nums) {
-        if (nums.empty()) return 0;
-        
-        int ans{0}, temp{1};
-        
-        sort(nums.begin(), nums.end());
-        nums.erase(unique(nums.begin(), nums.end()), nums.end());
+void solve() {
+    long long n;
+    std::cin >> n;
 
-        for (int i = 1; i < ssize(nums); ++i) {
-            if (nums[i] - 1 == nums[i - 1])
-                temp++;
-            else {
-                ans = max(ans, temp);
-                temp = 1;
+    long long total_cost = 0;
+    long long x = 0; // Represents the power, 3^x
+
+    while (n > 0) {
+        // Get the last digit in the base-3 representation of n
+        int digit = n % 3;
+
+        if (digit > 0) {
+            long long cost_per_deal;
+            // Calculate the cost for a single deal of size 3^x
+            if (x == 0) {
+                // Formula: 3^(0+1) + 0 * 3^(-1) = 3
+                cost_per_deal = 3;
+            } else {
+                // Formula: 3^(x+1) + x * 3^(x-1)
+                cost_per_deal = powers_of_3[x + 1] + x * powers_of_3[x - 1];
             }
+            // Add the cost for 'digit' number of such deals
+            total_cost += (long long)digit * cost_per_deal;
+            debug(total_cost, digit, cost_per_deal, x, n);
         }
-        ans = max(ans, temp);
-        return ans;
+
+        // Move to the next digit
+        n /= 3;
+        x++;
     }
-};
+    std::cout << total_cost << std::endl;
+}
 
 int main() {
-    scope("Main");
-    Solution s;
+    Redirect(R"(7#1#3#8#2#10#20#260010000)");
+    // Fast I/O
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL);
 
-#pragma input
+    precompute_powers();
 
-    Redirect(R"(100,4,200,1,3,2#0,3,7,2,5,8,4,6,0,1#1,0,1,2#0,-1#9,1,4,7,3,-1,0,5,8,-1,6#)");
-
-#pragma main
-    string txt;
-    input(txt);
-    
-    vi  num = stringTointVector(txt);
-    int ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-
-    /*
-    */
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-    
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
+    int t;
+    std::cin >> t;
+    while (t--) {
+        solve();
+    }
 
     return 0;
 }

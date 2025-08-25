@@ -187,26 +187,18 @@ vector<int> stringTointVector (string text) {
     return result;
 }
 
+
 class Solution {
 public:
-    int longestConsecutive(vector<int>& nums) {
-        if (nums.empty()) return 0;
+    int maxArea(vector<int>& h) {
+        int m{0};
         
-        int ans{0}, temp{1};
-        
-        sort(nums.begin(), nums.end());
-        nums.erase(unique(nums.begin(), nums.end()), nums.end());
-
-        for (int i = 1; i < ssize(nums); ++i) {
-            if (nums[i] - 1 == nums[i - 1])
-                temp++;
-            else {
-                ans = max(ans, temp);
-                temp = 1;
-            }
+        for (int l = 0, r = ssize(h) - 1; l != r;) {
+            m = max(m, (r - l) * (min(h[r], h[l])));
+            (h[r] < h[l]) ? r-- : l++;
         }
-        ans = max(ans, temp);
-        return ans;
+
+        return m;
     }
 };
 
@@ -216,40 +208,14 @@ int main() {
 
 #pragma input
 
-    Redirect(R"(100,4,200,1,3,2#0,3,7,2,5,8,4,6,0,1#1,0,1,2#0,-1#9,1,4,7,3,-1,0,5,8,-1,6#)");
+    Redirect(R"(1,8,6,2,5,4,8,3,7#)");
 
 #pragma main
     string txt;
     input(txt);
-    
+
     vi  num = stringTointVector(txt);
-    int ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-
-    /*
-    */
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
-    debug(ans, num, txt);
-    outputln(ans);
-    
-    input(txt);
-    num = stringTointVector(txt);
-    ans = s.longestConsecutive(num);
+    int ans = s.maxArea(num);
     debug(ans, num, txt);
     outputln(ans);
 
