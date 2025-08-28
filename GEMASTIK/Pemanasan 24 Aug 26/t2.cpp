@@ -57,10 +57,15 @@ Solution {
                                            {"BA", "DA"}, {"BB", "AA"}, {"BC", "BD"}, {"BD", "AB"},
                                            {"CA", "AD"}, {"CB", "CD"}, {"CC", "CB"}, {"CD", "BA"},
                                            {"DA", "DD"}, {"DB", "CC"}, {"DC", "DB"}, {"DD", "AC"},};
+
+    unordered_map<string,string> tables2 = {{"BB", "AA"}, {"CA", "AB"}, {"BC", "AC"}, {"DC", "AD"},
+                                           {"DA", "BA"}, {"AA", "BB"}, {"BD", "BC"}, {"AB", "BD"},
+                                           {"AD", "CA"}, {"CD", "CB"}, {"CB", "CC"}, {"BA", "CD"},
+                                           {"DD", "DA"}, {"CC", "DB"}, {"DB", "DC"}, {"AC", "DD"},};
     string txt;
-    cin >> txt;
+    cin >> txt;x
     for (int i = 0; i < txt.size(); i += 2) {
-        cout << tables[txt.substr(i, 2)];
+        cout << tables2[txt.substr(i, 2)];
     }
     return 0;
 }
